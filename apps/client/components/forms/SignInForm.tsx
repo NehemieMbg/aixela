@@ -47,7 +47,7 @@ const SignInForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-normal">Email (*)</FormLabel>
+                <FormLabel className="">Email (*)</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>
@@ -63,7 +63,7 @@ const SignInForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="font-normal">Password (*)</FormLabel>
+                    <FormLabel className="">Password (*)</FormLabel>
                     <FormControl>
                       {/* <Input {...field} type="password" /> */}
                       <PasswordInput field={field} />
@@ -74,7 +74,10 @@ const SignInForm = () => {
               />
             </div>
 
-            <Link href="/forgot-password" className="text-sm font-light">
+            <Link
+              href="/forgot-password"
+              className="text-sm hover:underline transition-text duration-500 text-app-text-gray"
+            >
               Forget Password ?
             </Link>
           </div>

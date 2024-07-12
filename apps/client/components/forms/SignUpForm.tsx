@@ -48,7 +48,7 @@ const SignUpForm = () => {
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-normal">Full Name (*)</FormLabel>
+                <FormLabel className="">Full Name (*)</FormLabel>
                 <FormControl>
                   <Input {...field} type="text" />
                 </FormControl>
@@ -62,7 +62,7 @@ const SignUpForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-normal">Email (*)</FormLabel>
+                <FormLabel className="">Email (*)</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>
@@ -76,7 +76,7 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="font-normal">Password (*)</FormLabel>
+                <FormLabel className="">Password (*)</FormLabel>
                 <FormControl>
                   {/* <Input {...field} type="password" /> */}
                   <PasswordInput field={field} />

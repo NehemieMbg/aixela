@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-app-gray-950 text-white;
+    @apply bg-app-gray-100 text-app-gray-950;
   }
 
   .p-side {

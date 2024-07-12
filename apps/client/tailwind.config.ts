@@ -35,12 +35,18 @@ const config = {
       colors: {
         app: {
           gray: {
+            100: '#F5F5F5',
+            200: '#EAEBEC',
+            250: '#E5E5E5',
             950: '#0D0F0F',
             900: '#202222',
-            200: '#EAEBEC',
             highlight: {
+              2: '#D2D2D2',
               3: '#3C3F3F',
             },
+          },
+          text: {
+            gray: '#7E7E7E',
           },
         },
       },

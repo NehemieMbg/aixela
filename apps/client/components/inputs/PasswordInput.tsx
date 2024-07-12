@@ -25,7 +25,7 @@ const PasswordInput = ({ field }: PasswordInputProps) => {
       <div
         onClick={() => setShowPassword((prev) => !prev)}
         className={cn(
-          'absolute top-1/2 h-12 flex items-center -translate-y-1/2 right-2.5 p-1.5 rounded-md cursor-pointer text-app-gray-200',
+          'absolute top-1/2 h-12 flex items-center -translate-y-1/2 right-2.5 p-1.5 rounded-md cursor-pointer text-app-text-gray',
           {
             hidden: field.value === '',
           }

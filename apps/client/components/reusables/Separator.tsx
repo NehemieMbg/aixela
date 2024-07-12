@@ -3,6 +3,6 @@
  * @returns A separator component.
  */
 const Separator = () => {
-  return <div className="h-[1px] w-full bg-app-gray-900"></div>;
+  return <div className="h-[1px] w-full bg-app-gray-250"></div>;
 };
 export default Separator;
