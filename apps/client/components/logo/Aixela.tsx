@@ -1,5 +1,9 @@
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 import Link from 'next/link';
+
+import logoBlack from '../../public/resources/logo/aixela-logo-black.png';
+import logoWhite from '../../public/resources/logo/aixela-logo-white.png';
 
 /**
  * Aixela logo of the application
@@ -17,11 +21,15 @@ const Aixela = ({
   return (
     <Link
       href={`${redirectLink ? redirectLink : '/'}`}
-      className={cn('text-xl', {
+      className={cn('text-base font-medium uppercase', {
         [`${className}`]: className,
       })}
     >
-      Aixela
+      <Image
+        src={logoBlack}
+        alt="App Logo"
+        className="h-3.5 w-max object-contain"
+      />
     </Link>
   );
 };

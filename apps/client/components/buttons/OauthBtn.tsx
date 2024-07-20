@@ -18,7 +18,10 @@ const OauthBtn = ({
   action?: () => void;
 }) => {
   return (
-    <Button onClick={action} className="space-x-2.5 w-full">
+    <Button
+      onClick={action}
+      className="space-x-2.5 w-full bg-app-gray-100 text-app-gray-300"
+    >
       <span>{icon}</span> <span>{label}</span>
     </Button>
   );

@@ -4,10 +4,26 @@
 
 @layer base {
   body {
-    @apply bg-app-gray-100 text-app-gray-950;
+    @apply bg-white text-app-gray-950;
   }
 
   .p-side {
-    @apply px-10;
+    @apply px-7 lg:px-8 2xl:px-10;
+  }
+
+  /* //? GRID LAYOUT */
+  .navbar-grid {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+
+    @media only screen and (max-width: 1024px) {
+      grid-template-columns: 1fr max-content max-content;
+      gap: 8px;
+    }
+  }
+
+  /* //? BUTTONS  */
+  .transparent-btn {
+    @apply bg-inherit hover:bg-app-gray-250 px-2.5 py-1.5 transition-colors duration-200 rounded-md;
   }
 }

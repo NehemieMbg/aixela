@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { signUpSchema } from '@/utils/schemas/AuthSchemas';
 import Link from 'next/link';
 import PasswordInput from '../inputs/PasswordInput';
+import SubmitPrimary from '../buttons/SubmitPrimary';
 
 const SignUpForm = () => {
   // 1. Define your form.
@@ -48,7 +49,9 @@ const SignUpForm = () => {
             name="fullName"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Full Name (*)</FormLabel>
+                <FormLabel className="text-app-gray-300">
+                  Full Name (*)
+                </FormLabel>
                 <FormControl>
                   <Input {...field} type="text" />
                 </FormControl>
@@ -62,7 +65,7 @@ const SignUpForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Email (*)</FormLabel>
+                <FormLabel className="text-app-gray-300">Email (*)</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>
@@ -76,7 +79,9 @@ const SignUpForm = () => {
             name="password"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Password (*)</FormLabel>
+                <FormLabel className="text-app-gray-300">
+                  Password (*)
+                </FormLabel>
                 <FormControl>
                   {/* <Input {...field} type="password" /> */}
                   <PasswordInput field={field} />
@@ -87,9 +92,7 @@ const SignUpForm = () => {
           />
         </div>
 
-        <Button type="submit" className="w-full">
-          Sign in
-        </Button>
+        <SubmitPrimary>Sign up</SubmitPrimary>
       </form>
     </Form>
   );

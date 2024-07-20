@@ -17,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { signInSchema } from '@/utils/schemas/AuthSchemas';
 import Link from 'next/link';
 import PasswordInput from '../inputs/PasswordInput';
+import SubmitPrimary from '../buttons/SubmitPrimary';
 
 const SignInForm = () => {
   // 1. Define your form.
@@ -47,7 +48,7 @@ const SignInForm = () => {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel className="">Email (*)</FormLabel>
+                <FormLabel className="text-app-gray-300">Email (*)</FormLabel>
                 <FormControl>
                   <Input {...field} type="email" />
                 </FormControl>
@@ -63,7 +64,9 @@ const SignInForm = () => {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="">Password (*)</FormLabel>
+                    <FormLabel className="text-app-gray-300">
+                      Password (*)
+                    </FormLabel>
                     <FormControl>
                       {/* <Input {...field} type="password" /> */}
                       <PasswordInput field={field} />
@@ -76,16 +79,14 @@ const SignInForm = () => {
 
             <Link
               href="/forgot-password"
-              className="text-sm hover:underline transition-text duration-500 text-app-text-gray"
+              className="text-sm font-medium hover:underline transition-text duration-500 text-app-gray-300"
             >
               Forget Password ?
             </Link>
           </div>
         </div>
 
-        <Button type="submit" className="w-full">
-          Sign in
-        </Button>
+        <SubmitPrimary>Sign in</SubmitPrimary>
       </form>
     </Form>
   );

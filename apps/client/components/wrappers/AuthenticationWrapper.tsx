@@ -48,8 +48,10 @@ const AuthenticationWrapper = ({
 
       {/* //? TITLES */}
       <div className="w-full space-y-4">
-        <h1 className="text-2xl mx-auto w-max font-medium">{title}</h1>
-        <p className="text-center text-sm text-app-text-gray">{subtitle}</p>
+        <h1 className="text-2xl mx-auto w-max font-semibold">{title}</h1>
+        <p className="text-center text-sm text-app-text-gray font-medium">
+          {subtitle}
+        </p>
       </div>
 
       {/* //? OAUTH BTN */}
@@ -76,9 +78,9 @@ const AuthenticationWrapper = ({
       {children}
 
       {/* //? REDIRECTION BTN */}
-      <div className="flex flex-col items-center gap-2 w-full text-sm">
-        <div className="">{redirectTitle}</div>
-        <Link href={redirectLink} className="w-max underline font-medium">
+      <div className="flex flex-col items-center gap-2 w-full text-sm text-app-gray-300">
+        <div className="font-medium">{redirectTitle}</div>
+        <Link href={redirectLink} className="w-max underline font-semibold">
           {redirectBtnLabel}
         </Link>
       </div>

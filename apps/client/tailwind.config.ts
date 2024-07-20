@@ -38,6 +38,7 @@ const config = {
             100: '#F5F5F5',
             200: '#EAEBEC',
             250: '#E5E5E5',
+            300: '#6E6E6E',
             950: '#0D0F0F',
             900: '#202222',
             highlight: {
@@ -45,8 +46,12 @@ const config = {
               3: '#3C3F3F',
             },
           },
+          blue: {
+            primary: '#3E61E1',
+            secondary: '#2843A7',
+          },
           text: {
-            gray: '#7E7E7E',
+            gray: '#6E6E6E',
           },
         },
       },
