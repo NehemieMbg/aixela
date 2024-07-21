@@ -4,11 +4,15 @@ import { Button } from '../ui/button';
 import SearchBar from './SearchBar';
 import { cn } from '@/lib/utils';
 
+/**
+ * Navbar component
+ * @returns the navbar component
+ */
 const Navbar = () => {
   const hasNotification = !false;
 
   return (
-    <nav className="navbar-grid p-side py-4 items-center">
+    <nav className="navbar-grid p-side py-5 items-center">
       <div>
         <Aixela className="text-base font-medium uppercase" />
       </div>
@@ -26,7 +30,7 @@ const Navbar = () => {
           Account
         </Link>
 
-        <Button className="relative space-x-1 h-max bg-inherit hover:bg-app-gray-250 px-2.5 py-1.5 transition-colors duration-200 rounded-md">
+        <Button className="relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md">
           <span>Menu</span>
           <div
             className={cn(

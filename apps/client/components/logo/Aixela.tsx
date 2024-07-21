@@ -28,7 +28,7 @@ const Aixela = ({
       <Image
         src={logoBlack}
         alt="App Logo"
-        className="h-3.5 w-max object-contain"
+        className="h-3 w-max object-contain"
       />
     </Link>
   );
