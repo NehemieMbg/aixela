@@ -40,4 +40,9 @@
   .transparent-btn {
     @apply bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md;
   }
+
+  /* //? Stop scrolling */
+  .no-scroll {
+    overflow: hidden;
+  }
 }
