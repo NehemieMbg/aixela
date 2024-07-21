@@ -16,7 +16,7 @@
   }
 
   .p-square {
-    @apply px-4 py-2.5 md:px-6 md:py-5;
+    @apply px-4 md:p-6;
   }
 
   /* //? GRID LAYOUT */
