@@ -292,7 +292,7 @@ export const campaigns: Campaign[] = [
     description:
       'QuantumLeap is at the forefront of quantum computing, developing powerful algorithms and hardware to solve the world’s most complex problems. Join us as we push the boundaries of science and technology.',
     targetAmount: 750000,
-    currentAmount: 450000,
+    currentAmount: 750000,
     startDate: new Date('2024-02-01'),
     endDate: new Date('2024-11-30'),
     creator: {

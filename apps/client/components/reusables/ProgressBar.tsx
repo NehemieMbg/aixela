@@ -19,22 +19,27 @@ const ProgressBar = ({
   const progress = progressToPercent(current, target);
 
   return (
-    <div
-      className={cn(
-        'relative w-full h-2 bg-app-gray-200  rounded-full overflow-hidden',
-        {
-          'bg-opacity-50': color === 'clear',
-        }
-      )}
-    >
+    <div className="w-full space-y-2">
+      <div className="text-sm text-right text-white">
+        {progress < 100 ? `${progress}%` : 'Completed'}
+      </div>
       <div
-        className={cn('h-full', {
-          'bg-app-blue-primary': color === 'primary',
-          'bg-white': color === 'clear',
-          'bg-app-gray-950': color === 'dark',
-        })}
-        style={{ width: `${progress}%` }}
-      />
+        className={cn(
+          'relative w-full h-2 bg-app-gray-200  rounded-full overflow-hidden',
+          {
+            'bg-opacity-50': color === 'clear',
+          }
+        )}
+      >
+        <div
+          className={cn('h-full', {
+            'bg-app-blue-primary': color === 'primary',
+            'bg-white': color === 'clear',
+            'bg-app-gray-950': color === 'dark',
+          })}
+          style={{ width: `${progress}%` }}
+        />
+      </div>
     </div>
   );
 };
