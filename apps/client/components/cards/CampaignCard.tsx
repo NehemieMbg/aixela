@@ -1,15 +1,13 @@
 'use client';
 
-import React from 'react';
-import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
 
-import { Campaign } from '@/utils/types/temp';
 import { AspectRatio } from '@/components/ui/aspect-ratio';
 import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
-import { set } from 'zod';
-import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Campaign } from '@/utils/types/temp';
 import ProgressBar from '../reusables/ProgressBar';
 
 /**

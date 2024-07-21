@@ -1,5 +1,11 @@
 import { Campaign, User } from '@/utils/types/temp';
 
+export const notFound = {
+  title: '404',
+  description: 'The page you are looking for does not exist',
+  imageUrl: 'https://utfs.io/f/2ff6e834-de13-44ff-ba8b-b4f951a983b4-oxgjvd.png',
+};
+
 export const footerLinks = [
   {
     label: 'Campaigns',
