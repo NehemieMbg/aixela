@@ -16,7 +16,7 @@
   }
 
   .p-square {
-    @apply px-4 md:p-6;
+    @apply p-4 md:p-6;
   }
 
   /* //? GRID LAYOUT */
