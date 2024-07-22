@@ -1,10 +1,10 @@
-import Backdrop from '../reusables/Backdrop';
-import { useAppSelector, useAppDispatch } from '@/lib/hooks';
-import { closeNotification } from '@/lib/features/Navigation/NotificationSlice';
-import { use, useRef } from 'react';
 import useClickOutside from '@/hooks/useClickOutside';
+import { closeNotification } from '@/lib/features/Navigation/NotificationSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { ArrowLeft, MoveLeft } from 'lucide-react';
+import { MoveLeft } from 'lucide-react';
+import { useRef } from 'react';
+import BackdropBis from '../reusables/BackdropBis';
 
 /**
  * Notifications component
@@ -21,7 +21,7 @@ const Notifications = () => {
 
   return (
     <>
-      <Backdrop isActive={isOpen} zIndex={200} />
+      <BackdropBis isActive={isOpen} zIndex={200} />
 
       <div
         ref={notificationRef}
