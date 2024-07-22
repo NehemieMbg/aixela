@@ -25,6 +25,21 @@ export const footerLinks = [
   },
 ];
 
+export const menuNavLinks = [
+  {
+    label: 'Campaigns',
+    href: '/',
+  },
+  {
+    label: 'Saved & Contributed',
+    href: '/',
+  },
+  {
+    label: 'Account',
+    href: '/account',
+  },
+];
+
 // ! FAKE TEMP DATA
 
 export const user: User = {
@@ -45,7 +60,7 @@ export const user: User = {
   subscribers: [
     {
       userId: 2,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 2,
         fullName: 'Miguel Santos',
@@ -67,7 +82,7 @@ export const user: User = {
     },
     {
       userId: 3,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 3,
         fullName: 'Keiko Tanaka',
@@ -89,7 +104,7 @@ export const user: User = {
     },
     {
       userId: 4,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 4,
         fullName: 'Amara Singh',
@@ -111,7 +126,7 @@ export const user: User = {
     },
     {
       userId: 5,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 5,
         fullName: 'Fatima Zahra',
@@ -133,7 +148,7 @@ export const user: User = {
     },
     {
       userId: 6,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 6,
         fullName: "Liam O'Brien",
@@ -157,7 +172,7 @@ export const user: User = {
   subscribedTo: [
     {
       userId: 3,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 3,
         fullName: 'Keiko Tanaka',
@@ -179,7 +194,7 @@ export const user: User = {
     },
     {
       userId: 5,
-      subscribedDate: new Date(),
+      subscribedDate: new Date().toDateString(),
       user: {
         id: 5,
         fullName: 'Fatima Zahra',

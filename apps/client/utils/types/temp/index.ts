@@ -12,8 +12,8 @@ export interface User {
     instagram?: string;
     linkedIn?: string;
   };
-  subscribers: Subscriber[]; // Users who follow this user
-  subscribedTo: Subscriber[]; // Users this user is following
+  subscribers?: Subscriber[]; // Users who follow this user
+  subscribedTo?: Subscriber[]; // Users this user is following
 }
 
 export interface Campaign {
@@ -42,6 +42,6 @@ export interface Contributor {
 
 export interface Subscriber {
   userId: number; // The ID of the user who is following or being followed
-  subscribedDate: Date; // The date when the subscription started
+  subscribedDate: Date | String; // The date when the subscription started
   user: User;
 }
