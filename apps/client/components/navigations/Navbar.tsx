@@ -76,7 +76,7 @@ const Navbar = () => {
               onClick={() => setIsMenuOpen((prev) => !prev)}
               className="relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md"
             >
-              <span>Menu</span>
+              <span>{!isMenuOpen ? 'Menu' : 'Close'}</span>
               <div
                 className={cn(
                   'absolute top-2 right-2 bg-red-500 size-1.5 rounded-full',

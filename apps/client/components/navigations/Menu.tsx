@@ -19,7 +19,7 @@ const Menu = ({
     <>
       <div
         className={cn(
-          'fixed top-[60px] z-[99] w-full  bg-white lg:rounded-b-xl transition-all duration-300 ease-in-out overflow-hidden p-side  pt-16 pb-10',
+          'fixed top-[60px] z-[99] w-full  bg-white lg:rounded-b-xl transition-all duration-300 ease-in-out overflow-hidden p-side pt-10  lg:pt-16 pb-10',
           {
             '-translate-y-[100%] opacity-0 pointer-events-none': !isOpen,
             'translate-y-0 opacity-100': isOpen,
@@ -27,7 +27,7 @@ const Menu = ({
         )}
       >
         <div className="flex items-center justify-center h-full">
-          <div className="lg:grid grid-cols-3 lg:gap-10 max-lg:space-y-4 max-w-[1360px] w-full h-full">
+          <div className="lg:grid grid-cols-3 lg:gap-10 max-lg:space-y-1 max-w-[1360px] w-full h-full">
             <UserMenuInfo closeMenu={closeMenu} />
 
             <MenuNavLinks closeMenu={closeMenu} />

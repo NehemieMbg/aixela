@@ -20,7 +20,7 @@ const UserMenuInfo = ({ closeMenu }: { closeMenu: () => void }) => {
   return (
     <div className={cn('space-y-10 lg:space-y-20 col-start-1 col-end-3', {})}>
       <div
-        className={cn('space-y-12', {
+        className={cn('space-y-8 lg:space-y-12', {
           hidden: !isUserLoggedIn,
         })}
       >
