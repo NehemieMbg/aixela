@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils';
 import MenuNavLinks from '../sections/MenuNavLinks';
 import UserMenuInfo from '../sections/UserMenuInfo';
+import Notifications from '../sections/Notifications';
 
 /**
  * Menu component
@@ -15,23 +16,27 @@ const Menu = ({
   closeMenu: () => void;
 }) => {
   return (
-    <div
-      className={cn(
-        'fixed top-[60px] z-[99] w-full  bg-white lg:rounded-b-xl transition-all duration-300 ease-in-out overflow-hidden p-side  pt-16 pb-10',
-        {
-          '-translate-y-[100%] opacity-0 pointer-events-none': !isOpen,
-          'translate-y-0 opacity-100': isOpen,
-        }
-      )}
-    >
-      <div className="flex items-center justify-center h-full">
-        <div className="lg:grid grid-cols-3 lg:gap-10 max-lg:space-y-4 max-w-[1360px] w-full h-full">
-          <UserMenuInfo closeMenu={closeMenu} />
+    <>
+      <div
+        className={cn(
+          'fixed top-[60px] z-[99] w-full  bg-white lg:rounded-b-xl transition-all duration-300 ease-in-out overflow-hidden p-side  pt-16 pb-10',
+          {
+            '-translate-y-[100%] opacity-0 pointer-events-none': !isOpen,
+            'translate-y-0 opacity-100': isOpen,
+          }
+        )}
+      >
+        <div className="flex items-center justify-center h-full">
+          <div className="lg:grid grid-cols-3 lg:gap-10 max-lg:space-y-4 max-w-[1360px] w-full h-full">
+            <UserMenuInfo closeMenu={closeMenu} />
 
-          <MenuNavLinks closeMenu={closeMenu} />
+            <MenuNavLinks closeMenu={closeMenu} />
+          </div>
         </div>
       </div>
-    </div>
+
+      <Notifications />
+    </>
   );
 };
 export default Menu;

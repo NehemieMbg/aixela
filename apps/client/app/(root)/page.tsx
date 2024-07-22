@@ -7,7 +7,7 @@ import { campaigns } from '@/constants';
  */
 export default function Home() {
   return (
-    <div className="p-side py-10">
+    <div className="p-side py-10 pt-2">
       <Campaigns campaigns={campaigns} />
     </div>
   );
