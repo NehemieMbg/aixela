@@ -37,7 +37,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div ref={navContainerRef} className="sticky top-0 z-[100] h-max">
+      <div ref={navContainerRef} className="sticky top-0 z-[100] min-h-16">
         <nav
           className={cn(
             'absolute z-[110] w-full navbar-grid p-side py-3.5 items-center bg-white transition-colors duration-200',
