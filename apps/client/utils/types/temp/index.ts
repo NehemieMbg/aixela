@@ -1,3 +1,25 @@
+export interface Notification {
+  id: number;
+  notificationType: 'backers' | 'subscription';
+  user: User;
+  relatedEntityId: number;
+  createdDate: Date;
+  // message: string;
+}
+
+export interface BackersNotification {
+  id: number;
+  user: User;
+  amount: number;
+  date: Date;
+}
+
+export interface SubscriptionNotification {
+  id: number;
+  user: User;
+  date: Date;
+}
+
 export interface User {
   id: number;
   fullName: string;

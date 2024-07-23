@@ -1,10 +1,12 @@
 import useClickOutside from '@/hooks/useClickOutside';
 import { closeNotification } from '@/lib/features/Navigation/NotificationSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
-import { cn } from '@/lib/utils';
-import { MoveLeft } from 'lucide-react';
-import { useRef } from 'react';
-import BackdropBis from '../reusables/BackdropBis';
+import { useEffect, useRef } from 'react';
+
+// Temp data
+import { notificationData } from '@/constants/notificationTemp';
+import NotificationCard from '../cards/NotificationCard';
+import NotificationWrapper from '../wrappers/NotificationWrapper';
 
 /**
  * Notifications component
@@ -13,40 +15,57 @@ import BackdropBis from '../reusables/BackdropBis';
  * @returns the notifications component
  */
 const Notifications = () => {
+  const notifications = notificationData.notifications;
   const notificationRef = useRef<HTMLDivElement | null>(null);
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector((state) => state.notification.isOpen);
 
   useClickOutside(notificationRef, () => dispatch(closeNotification()));
 
+  // Scroll to top when the notification panel is opened
+  useEffect(() => {
+    if (isOpen && notificationRef.current) {
+      notificationRef.current.scrollTop = 0;
+    }
+  }, [isOpen]);
+
   return (
-    <>
-      <BackdropBis isActive={isOpen} zIndex={200} />
+    <NotificationWrapper
+      title="Notifications"
+      isOpen={isOpen}
+      closeNotification={() => dispatch(closeNotification())}
+    >
+      {notifications.map((notification) => {
+        const date = new Date(notification.createdDate).getDate();
 
-      <div
-        ref={notificationRef}
-        className={cn(
-          'fixed z-[210] max-md:top-0 max-md:right-0 max-md:bottom-0 max-md:left-0 md:right-2.5 md:top-2.5 md:bottom-2.5 md:max-w-[512px] w-full bg-white md:rounded-lg transition-transform duration-300 ease-in-out overflow-hidden',
-          {
-            'translate-x-[110%]': !isOpen,
-            'translate-x-0': isOpen,
-          }
-        )}
-      >
-        <div className="sticky top-0 flex justify-between items-center px-4 py-4 pr-6 bg-white backdrop-opacity-95">
-          <button
-            onClick={() => dispatch(closeNotification())}
-            className="transparent-btn flex items-center gap-2"
+        const isBackerNotification =
+          notification.notificationType === 'backers';
+
+        const message = isBackerNotification ? (
+          <div className="text-sm">
+            <span className="font-semibold">{notification.user.fullName}</span>{' '}
+            backed your campaign with $
+            <span className="font-semibold">{50}</span>
+          </div>
+        ) : (
+          <div className="text-sm">
+            <span className="font-semibold">{notification.user.fullName}</span>{' '}
+            subscribed to support your causes
+          </div>
+        );
+
+        return (
+          <NotificationCard
+            key={notification.id}
+            date={date}
+            showDate
+            avatarUrl={'https://github.com/shadcn.png'}
           >
-            <MoveLeft className="" />
-            <span className="text-sm">Return</span>
-          </button>
-
-          <h3 className="text-lg">Notifications</h3>
-        </div>
-        <div></div>
-      </div>
-    </>
+            {message}
+          </NotificationCard>
+        );
+      })}
+    </NotificationWrapper>
   );
 };
 export default Notifications;

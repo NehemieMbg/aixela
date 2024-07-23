@@ -49,4 +49,11 @@
   .no-scrollBis {
     overflow: hidden;
   }
+
+  .customScroll {
+    padding: 0;
+    scrollbar-width: 16px;
+    scrollbar-color: #d2d2d2 transparent;
+    scroll-behavior: smooth;
+  }
 }
