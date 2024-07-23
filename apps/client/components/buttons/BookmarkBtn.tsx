@@ -5,6 +5,10 @@ import { Button } from '../ui/button';
 import { Bookmark } from 'lucide-react';
 import { useState } from 'react';
 
+/**
+ * A bookmark button
+ * @returns The bookmark button
+ */
 const BookmarkBtn = () => {
   const isSaved = false;
   const [tempIsSaved, tempSetIsSaved] = useState(isSaved);
@@ -18,7 +22,7 @@ const BookmarkBtn = () => {
       type="submit"
       onClick={handleBookmark}
       className={cn(
-        'hover:backdrop-brightness-75 p-0 px-1 size-[36px] font-medium text-xs rounded-lg bg-app-gray-250 text-app-gray-highlight-3 hover:contrast-[90%] transition-all duration-300',
+        'hover:backdrop-brightness-75 p-0 px-1 size-[36px] font-medium text-xs rounded-lg bg-app-gray-100 text-app-gray-highlight-3 hover:bg-app-gray-200 transition-all duration-300',
         {}
       )}
     >

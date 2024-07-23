@@ -36,7 +36,7 @@ const CampaignHeader = ({ title }: { title: string }) => {
   return (
     <section
       className={cn(
-        'fixed z-[90] flex justify-between items-center p-side py-2 top-0 w-full bg-app-gray-highlight-3 text-white backdrop-blur-lg transition-all duration-300',
+        'fixed z-[90] flex justify-between items-center p-side py-3 top-0 w-full bg-app-gray-highlight-3 text-white backdrop-blur-lg transition-all duration-300',
         {
           'opacity-0 pointer-events-none': !isVisible,
           'opacity-100 pointer-events-auto': isVisible,

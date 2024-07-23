@@ -37,7 +37,7 @@ const SubscribeBtn = ({
         type="submit"
         onClick={handleSubscribe}
         className={cn(
-          'hover:backdrop-brightness-75 text-white p-0 px-1 size-[36px] font-medium text-xs rounded-lg',
+          'hover:backdrop-brightness-75 text-white p-0 px-1 size-[32px] font-medium text-xs rounded-lg',
           {
             hidden: btnType !== 'small',
             'bg-app-blue-primary hover:bg-app-blue-secondary': !tempIsSubscribe, //! to be replaced with isSubscribed

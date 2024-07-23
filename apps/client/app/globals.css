@@ -36,6 +36,15 @@
     }
   }
 
+  .campaign-grid {
+    display: grid;
+    grid-template-columns: minmax(min-content, 900px) 412px;
+
+    @media only screen and (max-width: 1224px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
   /* //? BUTTONS  */
   .transparent-btn {
     @apply bg-inherit max-sm:focus:bg-none sm:hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit;
