@@ -8,7 +8,8 @@ import { Button } from '../ui/button';
 import Menu from './Menu';
 import { useRef, useState } from 'react';
 import useClickOutside from '@/hooks/useClickOutside';
-import { useAppSelector } from '@/lib/hooks';
+import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 
 /**
  * Navbar component
@@ -17,6 +18,7 @@ import { useAppSelector } from '@/lib/hooks';
 const Navbar = () => {
   const hasNotification = !false;
 
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
   const isUserLoggedIn = !!user;
 
@@ -63,20 +65,11 @@ const Navbar = () => {
               Campaigns
             </Link>
 
-            <Link
-              href={'/account'}
-              className={cn('transparent-btn max-xl:hidden', {
-                hidden: !isUserLoggedIn,
-              })}
-            >
-              Account
-            </Link>
-
             <Button
-              onClick={() => setIsMenuOpen((prev) => !prev)}
+              onClick={() => dispatch(openNotification())}
               className="relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md"
             >
-              <span>{!isMenuOpen ? 'Menu' : 'Close'}</span>
+              <span>Notifications</span>
               <div
                 className={cn(
                   'absolute top-2 right-2 bg-red-500 size-1.5 rounded-full',
@@ -90,6 +83,13 @@ const Navbar = () => {
                   hidden: !hasNotification,
                 })}
               ></div>
+            </Button>
+
+            <Button
+              onClick={() => setIsMenuOpen((prev) => !prev)}
+              className="relative h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md"
+            >
+              <span>{!isMenuOpen ? 'Menu' : 'Close'}</span>
             </Button>
           </div>
         </nav>
