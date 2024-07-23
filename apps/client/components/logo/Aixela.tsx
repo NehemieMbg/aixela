@@ -14,9 +14,11 @@ import logoWhite from '../../public/resources/logo/aixela-logo-white.png';
 const Aixela = ({
   redirectLink,
   className,
+  dark = true,
 }: {
   redirectLink?: string;
   className?: string;
+  dark?: boolean;
 }) => {
   return (
     <Link
@@ -26,7 +28,7 @@ const Aixela = ({
       })}
     >
       <Image
-        src={logoBlack}
+        src={dark ? logoBlack : logoWhite}
         alt="App Logo"
         className="h-3 w-max object-contain"
       />

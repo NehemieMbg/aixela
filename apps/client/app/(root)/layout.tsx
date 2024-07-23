@@ -9,7 +9,9 @@ const layout = ({ children }: { children: ReactNode }) => {
     <StoreProvider user={user}>
       <div className="main-layout w-full">
         <Navbar />
-        {children}
+
+        <div>{children}</div>
+
         <Footer />
       </div>
     </StoreProvider>

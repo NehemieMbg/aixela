@@ -1,15 +1,16 @@
 'use client';
 
+import useClickOutside from '@/hooks/useClickOutside';
+import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
+import { useAppDispatch } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { useRef, useState } from 'react';
 import Aixela from '../logo/Aixela';
 import Backdrop from '../reusables/Backdrop';
 import { Button } from '../ui/button';
 import Menu from './Menu';
-import { useRef, useState } from 'react';
-import useClickOutside from '@/hooks/useClickOutside';
-import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
-import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { usePathname } from 'next/navigation';
 
 /**
  * Navbar component
@@ -18,9 +19,10 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 const Navbar = () => {
   const hasNotification = !false;
 
+  const pathname = usePathname();
+  const isCampaignPage = pathname.includes('/campaigns');
+
   const dispatch = useAppDispatch();
-  const user = useAppSelector((state) => state.user);
-  const isUserLoggedIn = !!user;
 
   const navContainerRef = useRef<HTMLDivElement | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -39,17 +41,38 @@ const Navbar = () => {
 
   return (
     <>
-      <div ref={navContainerRef} className="sticky top-0 z-[100] min-h-16">
+      <div
+        ref={navContainerRef}
+        className={cn('top-0 z-[100] min-h-16 w-full', {
+          sticky: !isCampaignPage,
+          fixed: isCampaignPage,
+        })}
+      >
+        <div
+          className={cn('absolute z-[109] top-0 right-0 left-0 h-[23vh]', {
+            hidden: isMenuOpen || !isCampaignPage,
+          })}
+          style={{
+            background:
+              'linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0))',
+          }}
+        />
+
         <nav
           className={cn(
-            'absolute z-[110] w-full navbar-grid p-side py-3.5 items-center bg-white transition-colors duration-200',
+            'absolute z-[110] w-full navbar-grid p-side py-3.5 items-center transition-colors duration-200',
             {
               'backdrop-blur-sm bg-opacity-95': !isMenuOpen,
+              'text-white bg-transparent': isCampaignPage && !isMenuOpen,
+              'bg-white': !isCampaignPage || isMenuOpen,
             }
           )}
         >
           <div>
-            <Aixela className="text-base font-medium uppercase" />
+            <Aixela
+              className="text-base font-medium uppercase"
+              dark={!isCampaignPage || isMenuOpen}
+            />
           </div>
 
           <div className="justify-self-center w-full">
@@ -57,17 +80,40 @@ const Navbar = () => {
           </div>
 
           <div className="justify-self-end lg:space-x-6 text-sm font-medium">
-            <Button className="relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md">
+            <Button
+              className={cn(
+                'relative space-x-1 h-max bg-inherit  px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
+                {
+                  'hover:bg-app-gray-100': !isCampaignPage,
+                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                    isCampaignPage && !isMenuOpen,
+                }
+              )}
+            >
               <span>Search</span>
             </Button>
 
-            <Link href={'/'} className="transparent-btn max-xl:hidden">
+            <Link
+              href={'/'}
+              className={cn('transparent-btn max-xl:hidden', {
+                'hover:bg-app-gray-100': !isCampaignPage,
+                'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                  isCampaignPage && !isMenuOpen,
+              })}
+            >
               Campaigns
             </Link>
 
             <Button
               onClick={() => dispatch(openNotification())}
-              className="relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md"
+              className={cn(
+                'relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
+                {
+                  'hover:bg-app-gray-100': !isCampaignPage,
+                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                    isCampaignPage && !isMenuOpen,
+                }
+              )}
             >
               <span>Notifications</span>
               <div
@@ -87,7 +133,14 @@ const Navbar = () => {
 
             <Button
               onClick={() => setIsMenuOpen((prev) => !prev)}
-              className="relative h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md"
+              className={cn(
+                'relative h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
+                {
+                  'hover:bg-app-gray-100': !isCampaignPage,
+                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                    isCampaignPage && !isMenuOpen,
+                }
+              )}
             >
               <span>{!isMenuOpen ? 'Menu' : 'Close'}</span>
             </Button>
