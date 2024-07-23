@@ -53,7 +53,7 @@ const CampaignHeader = ({ title }: { title: string }) => {
         asChild
         type="submit"
         className={cn(
-          'bg-app-blue-primary hover:bg-app-blue-secondary hover:backdrop-brightness-75 text-white py-0 h-[28px] uppercase text-xs px-3',
+          'bg-app-blue-primary hover:bg-app-blue-secondary hover:backdrop-brightness-75 text-white py-0 h-[28px] font-normal text-xs px-4 rounded-[4px]',
           {}
         )}
       >
