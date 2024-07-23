@@ -24,7 +24,7 @@ const Campaign = ({ params }: { params: { campaignId: string } }) => {
     <>
       <CampaignHeader title={campaign?.title!} />
 
-      <div className="min-h-screen w-full">
+      <div className="min-h-screen w-full pb-[160px]">
         <HeroImage imageUrl={campaign?.thumbnailUrl!} alt={campaign?.title!} />
 
         <div className="flex items-center">
