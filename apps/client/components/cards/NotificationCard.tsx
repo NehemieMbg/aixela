@@ -2,6 +2,14 @@ import { cn } from '@/lib/utils';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Skeleton } from '../ui/skeleton';
 
+/**
+ * Notification card component
+ * @param avatarUrl - the URL of the avatar
+ * @param date - the date of the notification
+ * @param showDate - weather to show the date or not
+ * @param children - the children of the notification
+ * @returns the notification card component
+ */
 const NotificationCard = ({
   avatarUrl,
   date,
