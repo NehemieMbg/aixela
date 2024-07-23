@@ -151,7 +151,7 @@ const Navbar = () => {
             <Button
               onClick={() => setIsMenuOpen((prev) => !prev)}
               className={cn(
-                'relative h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit text-sm font-normal',
+                'relative h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit text-sm font-medium',
                 {
                   'hover:bg-app-gray-100': !isCampaignPage,
                   'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
