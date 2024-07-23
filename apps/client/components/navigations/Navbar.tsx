@@ -5,7 +5,7 @@ import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
 import { useAppDispatch } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Aixela from '../logo/Aixela';
 import Backdrop from '../reusables/Backdrop';
 import { Button } from '../ui/button';
@@ -27,6 +27,23 @@ const Navbar = () => {
   const navContainerRef = useRef<HTMLDivElement | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [isScrolledPast, setIsScrolledPast] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Check if the scroll position is past 100vh
+      setIsScrolledPast(window.scrollY > window.innerHeight);
+    };
+
+    // Add event listener
+    window.addEventListener('scroll', handleScroll);
+
+    // Remove event listener on cleanup
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   useClickOutside(navContainerRef, () => {
     setIsMenuOpen(false);
   });
@@ -42,22 +59,22 @@ const Navbar = () => {
   return (
     <>
       <div
+        className={cn('absolute z-[99] top-0 right-0 left-0 h-[23vh]', {
+          hidden: isMenuOpen || !isCampaignPage || isScrolledPast,
+        })}
+        style={{
+          background:
+            'linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0))',
+        }}
+      />
+
+      <div
         ref={navContainerRef}
         className={cn('top-0 z-[100] min-h-16 w-full', {
           sticky: !isCampaignPage,
-          fixed: isCampaignPage,
+          absolute: isCampaignPage,
         })}
       >
-        <div
-          className={cn('absolute z-[109] top-0 right-0 left-0 h-[23vh]', {
-            hidden: isMenuOpen || !isCampaignPage,
-          })}
-          style={{
-            background:
-              'linear-gradient(to bottom, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0))',
-          }}
-        />
-
         <nav
           className={cn(
             'absolute z-[110] w-full navbar-grid p-side py-3.5 items-center transition-colors duration-200',

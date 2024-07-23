@@ -47,7 +47,7 @@ const config = {
             },
           },
           blue: {
-            primary: '#3E61E1',
+            primary: '#3E6AE1',
             secondary: '#2843A7',
           },
           text: {
