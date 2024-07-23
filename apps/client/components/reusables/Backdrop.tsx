@@ -1,6 +1,12 @@
 import { useEffect } from 'react';
 import { cn } from '@/lib/utils';
 
+/**
+ * Backdrop component
+ * @param isActive - boolean to determine if the backdrop is active
+ * @param zIndex - z-index of the backdrop
+ * @returns the backdrop component
+ */
 const Backdrop = ({
   isActive,
   zIndex = 80,
