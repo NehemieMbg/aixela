@@ -29,7 +29,7 @@ const Contribute = ({ params }: { params: { campaignId: string } }) => {
 
   return (
     <>
-      <div className="contribute-grid h-screen w-screen">
+      <div className="contribute-grid md:h-screen w-screen">
         {/* Image */}
         <HeroImage
           imageUrl={campaign?.thumbnailUrl!}
@@ -38,7 +38,7 @@ const Contribute = ({ params }: { params: { campaignId: string } }) => {
         />
 
         {/* Right Side */}
-        <div className="p-side p-10 pt-10 md:pt-[120px] space-y-20">
+        <div className="p-side p-10 pt-10 md:pt-[120px] space-y-20 overflow-hidden overflow-y-scroll customScroll">
           <div className="space-y-9">
             <h1 className="text-3xl font-semibold">{campaign?.title}</h1>
 
