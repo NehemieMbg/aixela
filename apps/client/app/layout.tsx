@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
   title: 'Aixela',
   description:
-    'AIXELA is a modern authentication platform designed to provide secure and seamless login experiences. It supports both traditional email/password login and Google OAuth2 integration, catering to diverse user preferences. AIXELA aims to enhance security and usability, making it easy for developers to implement robust authentication systems and for users to enjoy quick, secure access to their accounts.',
+    'AIXELA is a fundraising web application designed to help campaigns raise money efficiently. It provides a dynamic platform where users can create and manage campaigns, track their progress, and engage with potential contributors. The application features a prominent video section, detailed campaign information, a real-time progress bar, and sections for user profiles and latest contributors. Excella aims to make fundraising more interactive and impactful',
 };
 
 export default function RootLayout({
