@@ -57,7 +57,7 @@ const NotificationWrapper = ({
             <span className="text-sm">Return</span>
           </button>
 
-          <h3 className="text-lg">{title}</h3>
+          <h3 className="text-lg font-medium">{title}</h3>
         </div>
 
         <div className="p-2 space-y-2">{children}</div>
