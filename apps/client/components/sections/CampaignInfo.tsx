@@ -24,7 +24,7 @@ const CampaignInfo = ({ campaign }: { campaign: Campaign }) => {
     <>
       <div className="relative xl:w-[412px] p-side py-10 space-y-10">
         <SubmitPrimary asChild className="h-11 rounded-md font-normal">
-          <Link href="/contribute">Contribute</Link>
+          <Link href={`/campaigns/${campaign.id}/contribute`}>Contribute</Link>
         </SubmitPrimary>
 
         {/* //? Latest Backers */}

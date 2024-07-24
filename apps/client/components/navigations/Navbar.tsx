@@ -21,6 +21,7 @@ const Navbar = () => {
 
   const pathname = usePathname();
   const isCampaignPage = pathname.includes('/campaigns');
+  const isContributePage = pathname.includes('/contribute');
 
   const dispatch = useAppDispatch();
 
@@ -58,9 +59,11 @@ const Navbar = () => {
 
   return (
     <>
+      {/* //? Gradient Linear Shadow */}
       <div
         className={cn('absolute z-[99] top-0 right-0 left-0 h-[23vh]', {
-          hidden: isMenuOpen || !isCampaignPage || isScrolledPast,
+          hidden:
+            isMenuOpen || !isCampaignPage || isScrolledPast || isContributePage,
         })}
         style={{
           background:
@@ -80,15 +83,16 @@ const Navbar = () => {
             'absolute z-[110] w-full navbar-grid p-side py-3.5 items-center transition-colors duration-200',
             {
               'backdrop-blur-sm bg-opacity-95': !isMenuOpen,
-              'text-white bg-transparent': isCampaignPage && !isMenuOpen,
-              'bg-white': !isCampaignPage || isMenuOpen,
+              'text-white bg-transparent':
+                isCampaignPage && !isMenuOpen && !isContributePage,
+              'bg-white': !isCampaignPage || isMenuOpen || isContributePage,
             }
           )}
         >
           <div>
             <Aixela
               className="text-base font-medium uppercase"
-              dark={!isCampaignPage || isMenuOpen}
+              dark={!isCampaignPage || isMenuOpen || isContributePage}
             />
           </div>
 
@@ -103,7 +107,7 @@ const Navbar = () => {
                 {
                   'hover:bg-app-gray-100': !isCampaignPage,
                   'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                    isCampaignPage && !isMenuOpen,
+                    isCampaignPage && !isMenuOpen && !isContributePage,
                 }
               )}
             >
@@ -115,7 +119,7 @@ const Navbar = () => {
               className={cn('transparent-btn max-xl:hidden', {
                 'hover:bg-app-gray-100': !isCampaignPage,
                 'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                  isCampaignPage && !isMenuOpen,
+                  isCampaignPage && !isMenuOpen && !isContributePage,
               })}
             >
               Campaigns
@@ -128,7 +132,7 @@ const Navbar = () => {
                 {
                   'hover:bg-app-gray-100': !isCampaignPage,
                   'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                    isCampaignPage && !isMenuOpen,
+                    isCampaignPage && !isMenuOpen && !isContributePage,
                 }
               )}
             >
@@ -155,7 +159,7 @@ const Navbar = () => {
                 {
                   'hover:bg-app-gray-100': !isCampaignPage,
                   'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                    isCampaignPage && !isMenuOpen,
+                    isCampaignPage && !isMenuOpen && !isContributePage,
                 }
               )}
             >

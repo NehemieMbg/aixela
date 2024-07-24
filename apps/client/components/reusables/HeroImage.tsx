@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import Image from 'next/image';
 
 /**
@@ -6,15 +7,25 @@ import Image from 'next/image';
  * @param alt - The alt text for the image
  * @returns the hero image component
  */
-const HeroImage = ({ imageUrl, alt }: { imageUrl: string; alt: string }) => {
+const HeroImage = ({
+  imageUrl,
+  alt,
+  className,
+  imageClassName,
+}: {
+  imageUrl: string;
+  alt: string;
+  className?: string;
+  imageClassName?: string;
+}) => {
   return (
-    <div className="h-[90vh] w-full overflow-hidden">
+    <div className={cn('h-[90vh] w-full overflow-hidden', className)}>
       <Image
         src={imageUrl}
         alt={alt}
         height={1080}
         width={1920}
-        className="size-full object-cover"
+        className={cn('size-full object-cover', imageClassName)}
         priority={true}
       />
     </div>

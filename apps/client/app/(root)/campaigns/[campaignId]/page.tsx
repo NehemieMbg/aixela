@@ -1,18 +1,17 @@
-import HeroImage from '@/components/reusables/HeroImage';
-import VideoPlayer from '@/components/reusables/VideoPlayer';
-import CampaignHeader from '@/components/sections/CampaignHeader';
-import CampaignDescription from '@/components/sections/CampaignDescription';
-import { campaigns } from '@/constants'; //* temp fake data
-import CampaignInfo from '@/components/sections/CampaignInfo';
 import BookmarkBtn from '@/components/buttons/BookmarkBtn';
+import DownloadBtn from '@/components/buttons/DownloadBtn';
+import SubscribeBtn from '@/components/buttons/SubscribeBtn';
+import HeroImage from '@/components/reusables/HeroImage';
 import ProgressBar from '@/components/reusables/ProgressBar';
-import { toReadableNumber } from '@/utils/functions';
+import VideoPlayer from '@/components/reusables/VideoPlayer';
+import CampaignDescription from '@/components/sections/CampaignDescription';
+import CampaignHeader from '@/components/sections/CampaignHeader';
+import CampaignInfo from '@/components/sections/CampaignInfo';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
-import SubscribeBtn from '@/components/buttons/SubscribeBtn';
+import { campaigns } from '@/constants'; //* temp fake data
+import { toReadableNumber } from '@/utils/functions';
 import Link from 'next/link';
-import { ArrowDownToLine } from 'lucide-react';
-import DownloadBtn from '@/components/buttons/DownloadBtn';
 
 /**
  * Campaign page
@@ -25,7 +24,7 @@ const Campaign = ({ params }: { params: { campaignId: string } }) => {
 
   return (
     <>
-      <CampaignHeader title={campaign?.title!} />
+      <CampaignHeader title={campaign?.title!} campaignId={campaign?.id!} />
 
       <div className="min-h-screen w-full pb-[160px]">
         <HeroImage imageUrl={campaign?.thumbnailUrl!} alt={campaign?.title!} />

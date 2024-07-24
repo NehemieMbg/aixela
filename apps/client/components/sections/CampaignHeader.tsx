@@ -10,7 +10,13 @@ import Link from 'next/link';
  * @param title - The title of the campaign
  * @returns the campaign header component
  */
-const CampaignHeader = ({ title }: { title: string }) => {
+const CampaignHeader = ({
+  title,
+  campaignId,
+}: {
+  title: string;
+  campaignId: number;
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -57,7 +63,7 @@ const CampaignHeader = ({ title }: { title: string }) => {
           {}
         )}
       >
-        <Link href="/contribute">Contribute</Link>
+        <Link href={`/campaigns/${campaignId}/contribute`}>Contribute</Link>
       </Button>
     </section>
   );
