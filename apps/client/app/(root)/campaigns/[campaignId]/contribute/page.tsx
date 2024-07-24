@@ -34,7 +34,7 @@ const Contribute = ({ params }: { params: { campaignId: string } }) => {
         <HeroImage
           imageUrl={campaign?.thumbnailUrl!}
           alt={campaign?.title!}
-          className="h-full w-full"
+          className="h-full w-full max-md:pt-12"
         />
 
         {/* Right Side */}
