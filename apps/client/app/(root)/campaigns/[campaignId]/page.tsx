@@ -10,6 +10,9 @@ import { toReadableNumber } from '@/utils/functions';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Skeleton } from '@/components/ui/skeleton';
 import SubscribeBtn from '@/components/buttons/SubscribeBtn';
+import Link from 'next/link';
+import { ArrowDownToLine } from 'lucide-react';
+import DownloadBtn from '@/components/buttons/DownloadBtn';
 
 /**
  * Campaign page
@@ -67,21 +70,23 @@ const Campaign = ({ params }: { params: { campaignId: string } }) => {
                 {/* //? User Info */}
                 <div className="space-y-2 mb-10">
                   <div className="flex items-center gap-4">
-                    <div className="flex items-center gap-3">
-                      <Avatar>
-                        <AvatarImage
-                          src={campaign?.creator.avatarUrl}
-                          className="size-12"
-                        />
-                        <AvatarFallback>
-                          <Skeleton />
-                        </AvatarFallback>
-                      </Avatar>
+                    <Link href={`/${campaign?.creator.username}`}>
+                      <div className="flex items-center gap-3">
+                        <Avatar>
+                          <AvatarImage
+                            src={campaign?.creator.avatarUrl}
+                            className="size-12"
+                          />
+                          <AvatarFallback>
+                            <Skeleton />
+                          </AvatarFallback>
+                        </Avatar>
 
-                      <p className="size-max font-medium">
-                        {campaign?.creator.fullName}
-                      </p>
-                    </div>
+                        <p className="size-max font-medium">
+                          {campaign?.creator.fullName}
+                        </p>
+                      </div>
+                    </Link>
 
                     <SubscribeBtn
                       isSubscribe={false}
@@ -92,7 +97,13 @@ const Campaign = ({ params }: { params: { campaignId: string } }) => {
                 </div>
               </div>
 
+              {/* //? Campaign Description */}
               <CampaignDescription />
+
+              <DownloadBtn
+                documentUrl={campaign?.documentUrl!}
+                campaignTitle={campaign?.title!}
+              />
             </div>
 
             <CampaignInfo campaign={campaign!} />

@@ -20,19 +20,13 @@ const CampaignInfo = ({ campaign }: { campaign: Campaign }) => {
 
       {/* //? Latest Backers */}
       <div className="space-y-5">
-        <div className="flex items-center justify-between">
-          <span
-            className={cn('text-app-gray-300 text-xs font-medium', {
-              hidden: campaign.contributors.length === 0,
-            })}
-          >
-            Latest Backers
-          </span>
-
-          <button className="ml-auto text-xs text-app-gray-300 font-medium text-right hover:underline">
-            View all
-          </button>
-        </div>
+        <span
+          className={cn('text-app-gray-300 text-xs font-medium', {
+            hidden: campaign.contributors.length === 0,
+          })}
+        >
+          Latest Backers
+        </span>
 
         {campaign.contributors.map((contributor) => {
           const avatarUrl = contributor.user.avatarUrl;
@@ -62,6 +56,12 @@ const CampaignInfo = ({ campaign }: { campaign: Campaign }) => {
             </div>
           );
         })}
+
+        <div className="flex items-center justify-center pt-6">
+          <button className="text-xs text-app-gray-300 font-medium hover:underline">
+            View all
+          </button>
+        </div>
       </div>
     </div>
   );

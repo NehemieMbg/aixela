@@ -44,6 +44,7 @@ export interface Campaign {
   subtitle: string;
   thumbnailUrl: string;
   videoUrl: string;
+  documentUrl?: string;
   description: string;
   targetAmount: number; // The goal amount set by the user
   currentAmount: number; // The amount raised currently

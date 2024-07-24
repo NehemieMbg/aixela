@@ -227,6 +227,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/ee6011e2-4de4-4598-98ba-bac80fed1a12-wg2rwb.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'NeuraTech is pioneering the future of neurotechnology with cutting-edge solutions designed to enhance cognitive functions and restore lost capabilities. Join us in revolutionizing healthcare and human potential.',
     targetAmount: 500000,
@@ -310,6 +312,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/8bf85d21-9ad2-4e6c-96d3-460fe4663022-ldvwjh.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'QuantumLeap is at the forefront of quantum computing, developing powerful algorithms and hardware to solve the world’s most complex problems. Join us as we push the boundaries of science and technology.',
     targetAmount: 750000,
@@ -393,6 +397,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/7b465695-3c15-4739-85fe-731000119bda-8ejw70.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'BioFusion is dedicated to developing innovative biotechnologies that enhance medical treatments and improve quality of life. Be part of a movement that’s transforming healthcare from the ground up.',
     targetAmount: 600000,
@@ -476,6 +482,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/9cb8cd9d-2747-4563-a9c8-e7fd6a8a082d-aa6imf.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'EcoSustain focuses on developing eco-friendly technologies that reduce carbon footprint and promote sustainable living. Join us in making the world a better place for future generations.',
     targetAmount: 400000,
@@ -559,6 +567,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/ee6011e2-4de4-4598-98ba-bac80fed1a12-wg2rwb.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'EcoSustain focuses on developing eco-friendly technologies that reduce carbon footprint and promote sustainable living. Join us in making the world a better place for future generations.',
     targetAmount: 400000,
@@ -642,6 +652,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/5a25fde3-cede-45d7-bd57-bb4429da6ea7-8n1phh.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'AI4Good is dedicated to using artificial intelligence to address global challenges such as poverty, health crises, and climate change. Join us in harnessing AI for a better world.',
     targetAmount: 800000,
@@ -725,6 +737,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/a6e9e39e-a756-422b-8c38-3c85e1d8792a-wwz5i3.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'SpaceXploration aims to make space exploration more accessible through cutting-edge technology and innovative solutions. Join us in pushing the boundaries of what is possible in space.',
     targetAmount: 1000000,
@@ -808,6 +822,8 @@ export const campaigns: Campaign[] = [
       'https://utfs.io/f/40ee4270-067e-4a23-a32a-065cb81b52cd-xlgaw0.jpg',
     videoUrl:
       'https://utfs.io/f/7dafb336-611d-4085-beb5-05ac9cee5d56-40l0sq.mp4',
+    documentUrl:
+      'https://utfs.io/f/36f7c310-659e-422d-941c-8b3222aa0555-d1tiug.pdf',
     description:
       'MedTech Innovators is focused on developing advanced medical technologies that enhance patient care and improve health outcomes. Join us in transforming the healthcare landscape.',
     targetAmount: 700000,
@@ -887,37 +903,36 @@ export const projectDescription = `Welcome to NeuraTech: Revolutionizing the Fut
 
 NeuraTech is on a mission to push the boundaries of what’s possible in the realm of neurotechnology. Imagine a world where advanced technology seamlessly integrates with the human body, restoring lost capabilities and unlocking new possibilities. At NeuraTech, we believe that the future is now, and we are dedicated to making this vision a reality.
 
-Our Mission:
+**Our Vision**:
 Our mission is to revolutionize healthcare by developing cutting-edge neurotechnology solutions. We aim to enhance cognitive functions, restore lost capabilities, and unlock new potential in the human mind and body. Through innovation, dedication, and collaboration with leading experts in neuroscience, AI, and biomedical engineering, we are poised to make a significant impact on the world.
 
-The Problem:
+**The Challenge**:
 Millions of people around the globe suffer from neurological disorders, cognitive impairments, and physical disabilities that limit their quality of life. Traditional treatments and therapies often fall short, providing limited relief and sometimes causing additional complications. There is a pressing need for innovative solutions that address these challenges more effectively and holistically.
 
-Our Solution:
+**Our Approach**:
 At NeuraTech, we are developing a suite of advanced neurotechnology products designed to transform healthcare. Our primary focus areas include:
 
-1. **Brain-Computer Interfaces (BCIs)**:
-    BCIs are devices that enable direct communication between the brain and external devices. Our BCIs are designed to help individuals with severe disabilities regain control over their environment, communicate more effectively, and even restore lost motor functions.
+BCIs are devices that enable direct communication between the brain and external devices. Our BCIs are designed to help individuals with severe disabilities regain control over their environment, communicate more effectively, and even restore lost motor functions.
 
-2. **Neuroprosthetics**:
-    These are artificial devices that replace or enhance the function of a missing or impaired part of the nervous system. Our neuroprosthetics are designed to provide better integration with the body, improved functionality, and a more natural user experience.
 
-3. **Cognitive Enhancement Devices**:
-    We are developing devices that can enhance cognitive functions such as memory, attention, and problem-solving skills. These devices have the potential to help individuals with cognitive impairments, as well as healthy individuals looking to optimize their mental performance.
+These are artificial devices that replace or enhance the function of a missing or impaired part of the nervous system. Our neuroprosthetics are designed to provide better integration with the body, improved functionality, and a more natural user experience.
 
-4. **AI-Driven Neurotherapy**:
-    Combining the power of artificial intelligence with neurotherapy, we are creating personalized treatment plans that adapt to the unique needs of each patient. This approach aims to provide more effective and efficient therapies for a range of neurological conditions.
 
-The Team:
+We are developing devices that can enhance cognitive functions such as memory, attention, and problem-solving skills. These devices have the potential to help individuals with cognitive impairments, as well as healthy individuals looking to optimize their mental performance.
+
+
+Combining the power of artificial intelligence with neurotherapy, we are creating personalized treatment plans that adapt to the unique needs of each patient. This approach aims to provide more effective and efficient therapies for a range of neurological conditions.
+
+**Our Team**:
 Our team is composed of leading experts in neuroscience, AI, biomedical engineering, and healthcare. We are passionate about pushing the boundaries of what is possible and dedicated to making a real difference in the lives of individuals around the world. Our collaborative approach ensures that we are always at the forefront of innovation, leveraging the latest research and technology to develop our products.
 
-Current Progress:
+**Current Progress**:
 We have made significant strides in our research and development efforts. Our prototypes have shown promising results in preclinical trials, and we are now gearing up for clinical trials to further validate our technologies. We have also established partnerships with leading research institutions and healthcare providers to ensure the successful deployment of our products.
 
-Your Support:
+**Your Support**
 To bring our vision to life, we need your support. Your contributions will help us fund the next phase of our research, conduct clinical trials, and bring our products to market. By supporting NeuraTech, you are not only investing in groundbreaking technology but also in a future where advanced neurotechnology can significantly improve the lives of millions of people.
 
-How You Can Help:
+**How You Can Help**:
 1. **Donate**:
     Your financial contributions will directly support our research and development efforts. Every dollar brings us closer to our goal of transforming healthcare through neurotechnology.
 
@@ -927,7 +942,7 @@ How You Can Help:
 3. **Partner with Us**:
     If you are a researcher, healthcare provider, or organization interested in collaborating with us, we would love to hear from you. Together, we can achieve even greater advancements in neurotechnology.
 
-Future Plans:
+**Our Commitment**:
 Looking ahead, we aim to expand our product offerings, explore new applications of our technology, and continue our research to stay at the cutting edge of neurotechnology. Our long-term vision includes developing fully integrated neurotechnology solutions that not only restore lost functions but also enhance human capabilities beyond their natural limits.
 
 Thank you for taking the time to learn about NeuraTech and our mission. With your support, we can make a significant impact on the future of healthcare and unlock new possibilities for human potential. Together, we can revolutionize the field of neurotechnology and improve the lives of millions around the world.`;
