@@ -1,6 +1,8 @@
 import { z } from 'zod';
 
 export const contributeSchema = z.object({
+  userId: z.number(),
+  campaignId: z.number(),
   amount: z
     .number()
     .int()

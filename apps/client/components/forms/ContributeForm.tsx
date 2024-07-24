@@ -15,12 +15,21 @@ import {
 import { Input } from '@/components/ui/input';
 import { contributeSchema } from '@/utils/schemas/ContributeSchema';
 import SubmitPrimary from '../buttons/SubmitPrimary';
+import { useAppSelector } from '@/lib/hooks';
 
-const ContributeForm = () => {
+/**
+ * Contribute form
+ * @returns the contribute form
+ */
+const ContributeForm = ({ campaignId }: { campaignId: number }) => {
+  const user = useAppSelector((state) => state.user);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof contributeSchema>>({
     resolver: zodResolver(contributeSchema),
     defaultValues: {
+      userId: user.id,
+      campaignId: campaignId,
       amount: 10,
     },
   });

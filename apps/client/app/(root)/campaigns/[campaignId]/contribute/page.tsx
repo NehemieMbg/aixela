@@ -1,14 +1,18 @@
-import HeroImage from '@/components/reusables/HeroImage';
-import Image from 'next/image';
+'use client';
 
-import { campaigns } from '@/constants';
+import HeroImage from '@/components/reusables/HeroImage';
+
+import { useState } from 'react';
 import ContributeForm from '@/components/forms/ContributeForm';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Skeleton } from '@/components/ui/skeleton';
 import ProgressBar from '@/components/reusables/ProgressBar';
-import { toReadableNumber } from '@/utils/functions';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
+import { campaigns } from '@/constants';
+import { toReadableNumber } from '@/utils/functions';
 import Link from 'next/link';
+import VideoModal from '@/components/wrappers/VideoModal';
+import VideoPlayer from '@/components/reusables/VideoPlayer';
 
 /**
  * Contribute page
@@ -21,61 +25,82 @@ const Contribute = ({ params }: { params: { campaignId: string } }) => {
     (campaign) => campaign.id === Number(campaignId)
   );
 
+  const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
   return (
-    <div className="contribute-grid h-screen w-screen">
-      {/* Image */}
-      <HeroImage
-        imageUrl={campaign?.thumbnailUrl!}
-        alt={campaign?.title!}
-        className="h-full w-full"
-      />
+    <>
+      <div className="contribute-grid h-screen w-screen">
+        {/* Image */}
+        <HeroImage
+          imageUrl={campaign?.thumbnailUrl!}
+          alt={campaign?.title!}
+          className="h-full w-full"
+        />
 
-      {/* Form */}
-      <div className="p-side p-10 pt-10 md:pt-[120px] space-y-20">
-        <div className="space-y-9">
-          <h1 className="text-3xl font-semibold">{campaign?.title}</h1>
+        {/* Right Side */}
+        <div className="p-side p-10 pt-10 md:pt-[120px] space-y-20">
+          <div className="space-y-9">
+            <h1 className="text-3xl font-semibold">{campaign?.title}</h1>
 
-          <div className="space-y-5">
-            <Link
-              href={`/${campaign?.creator.username}`}
-              className="flex items-center gap-3 w-max"
-            >
-              <Avatar>
-                <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>
-                  <Skeleton />
-                </AvatarFallback>
-              </Avatar>
+            <div className="space-y-5">
+              <Link
+                href={`/${campaign?.creator.username}`}
+                className="flex items-center gap-3 w-max"
+              >
+                <Avatar>
+                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarFallback>
+                    <Skeleton />
+                  </AvatarFallback>
+                </Avatar>
 
-              <p className="font-semibold text-sm">
-                {campaign?.creator.fullName}
-              </p>
-            </Link>
+                <p className="font-semibold text-sm">
+                  {campaign?.creator.fullName}
+                </p>
+              </Link>
 
-            <p className="text-sm">{campaign?.subtitle}</p>
+              <p className="text-sm">{campaign?.subtitle}</p>
 
-            <ProgressBar
-              current={campaign?.currentAmount!}
-              target={campaign?.targetAmount!}
-              color="primary"
-              showProgress={false}
-            />
+              <ProgressBar
+                current={campaign?.currentAmount!}
+                target={campaign?.targetAmount!}
+                color="primary"
+                showProgress={false}
+              />
 
-            <div className="font-medium text-sm">
-              ${toReadableNumber(campaign?.currentAmount!)} raised from $
-              {toReadableNumber(campaign?.targetAmount!)}
+              <div className="font-medium text-sm">
+                ${toReadableNumber(campaign?.currentAmount!)} raised from $
+                {toReadableNumber(campaign?.targetAmount!)}
+              </div>
+
+              <Button
+                onClick={() => setIsPreviewOpen(true)}
+                className="px-4 h-8 font-normal"
+              >
+                Watch video
+              </Button>
             </div>
+          </div>
 
-            <Button className="px-4 h-8 font-normal">Watch video</Button>
+          <div className="space-y-4">
+            <h2 className="font-semibold text-lg">Contribute</h2>
+            <ContributeForm campaignId={campaign?.id!} />
           </div>
         </div>
-
-        <div className="space-y-4">
-          <h2 className="font-semibold text-lg">Contribute</h2>
-          <ContributeForm />
-        </div>
       </div>
-    </div>
+
+      <VideoModal
+        isOpen={isPreviewOpen}
+        closeModal={() => setIsPreviewOpen(false)}
+      >
+        <div>
+          <VideoPlayer
+            thumbnailUrl={campaign?.thumbnailUrl!}
+            videoUrl={'https://youtu.be/uvsyIlKhVlQ?si=DmeJZ8NzFMAOEnq9'} //! to be changed
+          />
+        </div>
+      </VideoModal>
+    </>
   );
 };
 export default Contribute;

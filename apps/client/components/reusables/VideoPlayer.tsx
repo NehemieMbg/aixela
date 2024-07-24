@@ -9,7 +9,7 @@ const VideoPlayer = ({
 }) => {
   const youtubeVideoId = videoUrl.split('/').pop();
 
-  return (
+  https: return (
     <div className="relative rounded-xl overflow-hidden">
       <AspectRatio ratio={16 / 9}>
         <iframe

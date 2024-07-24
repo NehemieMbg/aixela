@@ -19,6 +19,10 @@ import Link from 'next/link';
 import PasswordInput from '../inputs/PasswordInput';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 
+/**
+ * Sign in form
+ * @returns the sign in form
+ */
 const SignInForm = () => {
   // 1. Define your form.
   const form = useForm<z.infer<typeof signInSchema>>({
