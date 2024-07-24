@@ -19,7 +19,7 @@ const CampaignHeader = ({ title }: { title: string }) => {
       const viewportHeight = window.innerHeight;
 
       // Show the header when the user has scrolled 50% of the viewport height
-      if (scrollPosition >= viewportHeight / 2) {
+      if (scrollPosition >= viewportHeight / 4) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
