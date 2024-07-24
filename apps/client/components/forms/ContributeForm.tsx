@@ -56,6 +56,9 @@ const ContributeForm = ({ campaignId }: { campaignId: number }) => {
                 <Input
                   {...field}
                   type="number"
+                  onChange={(e) =>
+                    form.setValue('amount', parseInt(e.target.value))
+                  }
                   className="text-center text-base font-semibold"
                   style={{
                     WebkitAppearance: 'none',
