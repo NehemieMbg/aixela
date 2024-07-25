@@ -26,6 +26,7 @@ const UserMenuInfo = ({ closeMenu }: { closeMenu: () => void }) => {
       >
         <Link
           href={`/${user.username}`}
+          onClick={closeMenu}
           className="flex items-center gap-3 w-max"
         >
           <Avatar className="size-12">
@@ -46,7 +47,7 @@ const UserMenuInfo = ({ closeMenu }: { closeMenu: () => void }) => {
         </Link>
 
         {/* //? Latest Campaign */}
-        <LatestCampaign />
+        <LatestCampaign closeMenu={closeMenu} />
       </div>
 
       <Button

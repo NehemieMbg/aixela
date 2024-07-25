@@ -33,7 +33,7 @@ const MenuNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
         </Link>
 
         <Link
-          href={'/'}
+          href={`/${user.username}/contribution`}
           onClick={closeMenu}
           className={cn('transparent-btn block w-max text-sm font-medium', {
             hidden: !isUserLoggedIn,
