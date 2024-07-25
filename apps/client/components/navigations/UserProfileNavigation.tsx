@@ -10,6 +10,8 @@ import Subscribers from '../sections/Subscribers';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Skeleton } from '../ui/skeleton';
 import ProfileNavigation from './ProfileNavigation';
+import { cn } from '@/lib/utils';
+import { useAppSelector } from '@/lib/hooks';
 
 /**
  * The UserProfileNavigation component
@@ -17,6 +19,9 @@ import ProfileNavigation from './ProfileNavigation';
  * @returns
  */
 const UserProfileNavigation = ({ user }: { user: User }) => {
+  const connectedUser = useAppSelector((state) => state.user);
+  const isOwner = connectedUser?.username === user.username;
+
   const [isSubscribersOpen, setIsSubscribersOpen] = useState(false);
   const [isSubscribedToOpen, setIsSubscribedToOpen] = useState(false);
 
@@ -84,13 +89,18 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
             btnType="medium"
             isSubscribe={false}
             isOwner={false}
-            className="max-md:hidden"
+            className={cn('max-md:hidden', {
+              hidden: isOwner,
+            })}
           />
+
           <SubscribeBtn
             btnType="large"
             isSubscribe={false}
             isOwner={false}
-            className="md:hidden"
+            className={cn('md:hidden', {
+              hidden: isOwner,
+            })}
           />
         </div>
 
