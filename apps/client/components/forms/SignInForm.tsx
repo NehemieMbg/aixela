@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { Button } from '@/components/ui/button';
 import {
   Form,
   FormControl,
@@ -16,8 +15,8 @@ import {
 import { Input } from '@/components/ui/input';
 import { signInSchema } from '@/utils/schemas/AuthSchemas';
 import Link from 'next/link';
-import PasswordInput from '../inputs/PasswordInput';
 import SubmitPrimary from '../buttons/SubmitPrimary';
+import PasswordInput from '../inputs/PasswordInput';
 
 /**
  * Sign in form

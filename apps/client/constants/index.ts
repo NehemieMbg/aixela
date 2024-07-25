@@ -42,6 +42,277 @@ export const menuNavLinks = [
 
 // ! FAKE TEMP DATA
 
+export const users: User[] = [
+  {
+    id: 1,
+    fullName: 'Naomi Liu',
+    username: 'naomiliu',
+    email: 'naomie.liu@test.com',
+    avatarUrl:
+      'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+    title: 'CEO NeuraTech & former Google software engineer',
+    location: 'San Francisco, CA',
+    links: {
+      website: 'https://naomiliu.com',
+      twitter: 'https://twitter.com/naomiliu',
+      instagram: 'https://instagram.com/naomiliu',
+      linkedIn: 'https://linkedin.com/in/naomiliu',
+    },
+    subscribers: [
+      {
+        userId: 2,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 2,
+          fullName: 'Miguel Santos',
+          username: 'miguelsantos',
+          email: 'miguel@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'Product Manager',
+          location: 'Sao Paulo, Brazil',
+          links: {
+            website: 'https://miguelsantos.com',
+            twitter: 'https://twitter.com/miguelsantos',
+            instagram: 'https://instagram.com/miguelsantos',
+            linkedIn: 'https://linkedin.com/in/miguelsantos',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+      {
+        userId: 3,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 3,
+          fullName: 'Keiko Tanaka',
+          username: 'keikotanaka',
+          email: 'keiko@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'Graphic Designer',
+          location: 'Tokyo, Japan',
+          links: {
+            website: 'https://keikotanaka.art',
+            twitter: 'https://twitter.com/keikotanaka',
+            instagram: 'https://instagram.com/keikotanaka',
+            linkedIn: 'https://linkedin.com/in/keikotanaka',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+      {
+        userId: 4,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 4,
+          fullName: 'Amara Singh',
+          username: 'amarasingh',
+          email: 'amara@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'Chief Scientist',
+          location: 'New Delhi, India',
+          links: {
+            website: 'https://amarasingh.tech',
+            twitter: 'https://twitter.com/amarasingh',
+            instagram: 'https://instagram.com/amarasingh',
+            linkedIn: 'https://linkedin.com/in/amarasingh',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+      {
+        userId: 5,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 5,
+          fullName: 'Fatima Zahra',
+          username: 'fatimazahra',
+          email: 'fatima@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'AI Researcher',
+          location: 'Casablanca, Morocco',
+          links: {
+            website: 'https://fatimazahra.ai',
+            twitter: 'https://twitter.com/fatimazahra',
+            instagram: 'https://instagram.com/fatimazahra',
+            linkedIn: 'https://linkedin.com/in/fatimazahra',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+      {
+        userId: 6,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 6,
+          fullName: "Liam O'Brien",
+          username: 'liamobrien',
+          email: 'liam@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'Blockchain Developer',
+          location: 'Dublin, Ireland',
+          links: {
+            website: 'https://liamobrien.io',
+            twitter: 'https://twitter.com/liamobrien',
+            instagram: 'https://instagram.com/liamobrien',
+            linkedIn: 'https://linkedin.com/in/liamobrien',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+    ],
+    subscribedTo: [
+      {
+        userId: 3,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 3,
+          fullName: 'Keiko Tanaka',
+          username: 'keikotanaka',
+          email: 'keiko@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'Graphic Designer',
+          location: 'Tokyo, Japan',
+          links: {
+            website: 'https://keikotanaka.art',
+            twitter: 'https://twitter.com/keikotanaka',
+            instagram: 'https://instagram.com/keikotanaka',
+            linkedIn: 'https://linkedin.com/in/keikotanaka',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+      {
+        userId: 5,
+        subscribedDate: new Date().toDateString(),
+        user: {
+          id: 5,
+          fullName: 'Fatima Zahra',
+          username: 'fatimazahra',
+          email: 'fatima@example.com',
+          avatarUrl:
+            'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+          title: 'AI Researcher',
+          location: 'Casablanca, Morocco',
+          links: {
+            website: 'https://fatimazahra.ai',
+            twitter: 'https://twitter.com/fatimazahra',
+            instagram: 'https://instagram.com/fatimazahra',
+            linkedIn: 'https://linkedin.com/in/fatimazahra',
+          },
+          subscribers: [],
+          subscribedTo: [],
+        },
+      },
+    ],
+  },
+  {
+    id: 2,
+    fullName: 'Miguel Santos',
+    username: 'miguelsantos',
+    email: 'miguel@example.com',
+    avatarUrl:
+      'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+    title: 'Product Manager',
+    location: 'Sao Paulo, Brazil',
+    links: {
+      website: 'https://miguelsantos.com',
+      twitter: 'https://twitter.com/miguelsantos',
+      instagram: 'https://instagram.com/miguelsantos',
+      linkedIn: 'https://linkedin.com/in/miguelsantos',
+    },
+    subscribers: [],
+    subscribedTo: [],
+  },
+
+  {
+    id: 3,
+    fullName: 'Keiko Tanaka',
+    username: 'keikotanaka',
+    email: 'keiko@example.com',
+    avatarUrl:
+      'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+    title: 'Graphic Designer',
+    location: 'Tokyo, Japan',
+    links: {
+      website: 'https://keikotanaka.art',
+      twitter: 'https://twitter.com/keikotanaka',
+      instagram: 'https://instagram.com/keikotanaka',
+      linkedIn: 'https://linkedin.com/in/keikotanaka',
+    },
+    subscribers: [],
+    subscribedTo: [],
+  },
+
+  {
+    id: 4,
+    fullName: 'Amara Singh',
+    username: 'amarasingh',
+    email: 'amara@example.com',
+    avatarUrl:
+      'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+    title: 'Chief Scientist',
+    location: 'New Delhi, India',
+    links: {
+      website: 'https://amarasingh.tech',
+      twitter: 'https://twitter.com/amarasingh',
+      instagram: 'https://instagram.com/amarasingh',
+      linkedIn: 'https://linkedin.com/in/amarasingh',
+    },
+    subscribers: [],
+    subscribedTo: [],
+  },
+
+  {
+    id: 5,
+    fullName: 'Fatima Zahra',
+    username: 'fatimazahra',
+    email: 'fatima@example.com',
+    avatarUrl:
+      'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+    title: 'AI Researcher',
+    location: 'Casablanca, Morocco',
+    links: {
+      website: 'https://fatimazahra.ai',
+      twitter: 'https://twitter.com/fatimazahra',
+      instagram: 'https://instagram.com/fatimazahra',
+      linkedIn: 'https://linkedin.com/in/fatimazahra',
+    },
+    subscribers: [],
+    subscribedTo: [],
+  },
+
+  {
+    id: 6,
+    fullName: "Liam O'Brien",
+    username: 'liamobrien',
+    email: 'liam@example.com',
+    avatarUrl:
+      'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
+    title: 'Blockchain Developer',
+    location: 'Dublin, Ireland',
+    links: {
+      website: 'https://liamobrien.io',
+      twitter: 'https://twitter.com/liamobrien',
+      instagram: 'https://instagram.com/liamobrien',
+      linkedIn: 'https://linkedin.com/in/liamobrien',
+    },
+    subscribers: [],
+    subscribedTo: [],
+  },
+];
+
 export const user: User = {
   id: 1,
   fullName: 'Naomi Liu',
