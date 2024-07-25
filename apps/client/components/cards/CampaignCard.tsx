@@ -9,13 +9,21 @@ import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 import { Campaign } from '@/utils/types/temp';
 import ProgressBar from '../reusables/ProgressBar';
+import { useParams } from 'next/navigation';
 
 /**
  * Campaign card component
  * @param campaign - Data of the campaign to display
+ * @param isProfile - If the creator should be displayed
  * @returns the campaign card component
  */
-const CampaignCard = ({ campaign }: { campaign: Campaign }) => {
+const CampaignCard = ({
+  campaign,
+  isProfile,
+}: {
+  campaign: Campaign;
+  isProfile?: boolean;
+}) => {
   const [isLoaded, setIsLoaded] = React.useState(false);
 
   return (
@@ -80,7 +88,11 @@ const CampaignCard = ({ campaign }: { campaign: Campaign }) => {
           <span className="">{campaign.subtitle}</span>
         </div>
 
-        <div className="text-sm text-app-gray-900">
+        <div
+          className={cn('text-sm text-app-gray-900', {
+            hidden: isProfile,
+          })}
+        >
           by{' '}
           <Link href={`/${campaign.creator.username}`} className="font-medium">
             {campaign.creator.fullName}

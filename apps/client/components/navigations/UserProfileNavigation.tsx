@@ -5,13 +5,18 @@ import { campaigns } from '@/constants';
 import SubscribeBtn from '../buttons/SubscribeBtn';
 import ProfileNavigation from './ProfileNavigation';
 
+/**
+ *
+ * @param user - The user object
+ * @returns
+ */
 const UserProfileNavigation = ({ user }: { user: User }) => {
   const userCampaigns = campaigns.filter(
     (campaign) => campaign.creator.username === user.username
   );
 
   return (
-    <div className="p-side py-10 md:py-[60px] space-y-[60px]">
+    <div className="p-side pt-10 pb-6 md:pt-[60px] space-y-8 md:space-y-[60px]">
       <div className="flex max-md:flex-col justify-between gap-10">
         <div className="flex max-md:flex-col md:items-center gap-7">
           <Avatar className="size-[80px] md:size-[120px]">
