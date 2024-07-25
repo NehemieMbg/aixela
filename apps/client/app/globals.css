@@ -54,6 +54,12 @@
     }
   }
 
+  .account-navigation-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 20px;
+  }
+
   /* //? BUTTONS  */
   .transparent-btn {
     @apply bg-inherit max-sm:focus:bg-none sm:hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit;

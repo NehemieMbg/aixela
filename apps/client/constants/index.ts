@@ -40,6 +40,17 @@ export const menuNavLinks = [
   },
 ];
 
+export const accountNavLinks = [
+  {
+    label: 'Account',
+    href: '/account',
+  },
+  {
+    label: 'Security',
+    href: '/account/security',
+  },
+];
+
 // ! FAKE TEMP DATA
 
 export const users: User[] = [
