@@ -76,7 +76,7 @@ const EmailForm = () => {
           />
         </div>
 
-        <SubmitPrimary className="font-normal mt-10 w-max h-12 rounded-md">
+        <SubmitPrimary className="font-normal mt-10 w-max rounded-md">
           Update Email
         </SubmitPrimary>
       </form>

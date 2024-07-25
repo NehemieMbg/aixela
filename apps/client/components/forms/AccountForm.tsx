@@ -87,7 +87,7 @@ const AccountForm = () => {
           )}
         />
 
-        <SubmitPrimary className="font-normal mt-10 w-max h-12 rounded-md">
+        <SubmitPrimary className="font-normal mt-10 w-max rounded-md">
           Save profile
         </SubmitPrimary>
       </form>

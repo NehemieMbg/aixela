@@ -5,6 +5,10 @@ import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+/**
+ * Account navigation
+ * @returns the account navigation
+ */
 const AccountNavigation = () => {
   const pathname = usePathname();
 

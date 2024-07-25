@@ -21,7 +21,7 @@ const SubmitPrimary = ({
       type="submit"
       asChild={asChild}
       className={cn(
-        'w-full bg-app-blue-primary hover:bg-app-blue-secondary hover:backdrop-brightness-75 text-white',
+        'w-full bg-app-blue-primary hover:bg-app-blue-secondary hover:backdrop-brightness-75 text-white h-11',
         {
           [`${className}`]: className,
         }
