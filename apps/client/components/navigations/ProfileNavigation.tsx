@@ -5,8 +5,12 @@ import { cn } from '@/lib/utils';
 import { User } from '@/utils/types/temp';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import path from 'path';
 
+/**
+ * The ProfileNavigation component
+ * @param user - The user object
+ * @returns The ProfileNavigation component
+ */
 const ProfileNavigation = ({ user }: { user: User }) => {
   const pathname = usePathname();
   const pathArray = pathname.split('/');
@@ -16,8 +20,6 @@ const ProfileNavigation = ({ user }: { user: User }) => {
   const isCampaign = lastPath === user.username;
   const isContribution = lastPath === 'contribution';
   const isSaved = lastPath === 'saved';
-
-  console.log(lastPath);
 
   const connectedUser = useAppSelector((state) => state.user);
   const isOwner = connectedUser.username === user.username;
