@@ -11,6 +11,8 @@ import Backdrop from '../reusables/Backdrop';
 import { Button } from '../ui/button';
 import Menu from './Menu';
 import { usePathname } from 'next/navigation';
+import SearchBar from './SearchBar';
+import { CommandIcon } from 'lucide-react';
 
 /**
  * Navbar component
@@ -89,21 +91,17 @@ const Navbar = () => {
             }
           )}
         >
-          <div>
+          {/* //? Logo & Searchbar
+           */}
+          <div className="flex items-center gap-4">
             <Aixela
               className="text-base font-medium uppercase"
               dark={!isCampaignPage || isMenuOpen || isContributePage}
             />
-          </div>
 
-          <div className="justify-self-center w-full">
-            {/* <SearchBar /> */}
-          </div>
-
-          <div className="justify-self-end lg:space-x-6 text-sm font-medium">
             <Button
               className={cn(
-                'relative space-x-1 h-max bg-inherit  px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
+                'relative space-x-2 h-max bg-inherit px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
                 {
                   'hover:bg-app-gray-100': !isCampaignPage,
                   'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
@@ -112,7 +110,42 @@ const Navbar = () => {
               )}
             >
               <span>Search</span>
+              <div className="flex items-center gap-0.5 text-app-gray-highlight-3">
+                <CommandIcon
+                  size={14}
+                  className="inline-block"
+                  strokeWidth={2}
+                />
+                <span className="text-sm font-medium">K</span>
+              </div>
             </Button>
+          </div>
+
+          <div className="justify-self-center w-full">
+            {/* <SearchBar /> */}
+          </div>
+
+          <div className="justify-self-end lg:space-x-6 text-sm font-medium">
+            {/* <Button
+              className={cn(
+                'relative space-x-2 h-max bg-inherit px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
+                {
+                  'hover:bg-app-gray-100': !isCampaignPage,
+                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                    isCampaignPage && !isMenuOpen && !isContributePage,
+                }
+              )}
+            >
+              <span>Search</span>
+              <div className="flex items-center gap-0.5 text-app-gray-highlight-3">
+                <CommandIcon
+                  size={14}
+                  className="inline-block"
+                  strokeWidth={2}
+                />
+                <span className="text-sm font-medium">K</span>
+              </div>
+            </Button> */}
 
             <Link
               href={'/'}

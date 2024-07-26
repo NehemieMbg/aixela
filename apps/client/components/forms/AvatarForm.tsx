@@ -60,6 +60,7 @@ const AvatarForm = ({ user }: { user: User }) => {
           accept="image/*"
         />
       </div>
+
       <button className="text-app-gray-900 text-sm font-medium py-2.5 px-3.5">
         Delete
       </button>
