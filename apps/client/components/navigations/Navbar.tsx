@@ -2,18 +2,17 @@
 
 import useClickOutside from '@/hooks/useClickOutside';
 import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
+import { openSearch } from '@/lib/features/search/SearchSlice';
 import { useAppDispatch } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
+import SearchBtn from '../buttons/SearchBtn';
 import Aixela from '../logo/Aixela';
 import Backdrop from '../reusables/Backdrop';
 import { Button } from '../ui/button';
 import Menu from './Menu';
-import { usePathname } from 'next/navigation';
-import SearchBar from './SearchBar';
-import { CommandIcon } from 'lucide-react';
-import SearchBtn from '../buttons/SearchBtn';
 
 /**
  * Navbar component
@@ -29,8 +28,8 @@ const Navbar = () => {
   const dispatch = useAppDispatch();
 
   const navContainerRef = useRef<HTMLDivElement | null>(null);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolledPast, setIsScrolledPast] = useState(false);
 
   useEffect(() => {
@@ -107,7 +106,7 @@ const Navbar = () => {
 
           <div className="justify-self-end flex items-center lg:gap-6  text-sm font-medium">
             <SearchBtn
-              className=""
+              onClick={() => dispatch(openSearch())}
               isCampaignPage={isCampaignPage}
               isMenuOpen={isMenuOpen}
               isContributePage={isContributePage}
