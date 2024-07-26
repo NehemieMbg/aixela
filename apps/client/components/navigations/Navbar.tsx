@@ -13,6 +13,7 @@ import Menu from './Menu';
 import { usePathname } from 'next/navigation';
 import SearchBar from './SearchBar';
 import { CommandIcon } from 'lucide-react';
+import SearchBtn from '../buttons/SearchBtn';
 
 /**
  * Navbar component
@@ -93,63 +94,28 @@ const Navbar = () => {
         >
           {/* //? Logo & Searchbar
            */}
-          <div className="flex items-center gap-4">
+          <div className="h-3 w-max">
             <Aixela
               className="text-base font-medium uppercase"
               dark={!isCampaignPage || isMenuOpen || isContributePage}
             />
-
-            <Button
-              className={cn(
-                'relative space-x-2 h-max bg-inherit px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
-                {
-                  'hover:bg-app-gray-100': !isCampaignPage,
-                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                    isCampaignPage && !isMenuOpen && !isContributePage,
-                }
-              )}
-            >
-              <span>Search</span>
-              <div className="flex items-center gap-0.5 text-app-gray-highlight-3">
-                <CommandIcon
-                  size={14}
-                  className="inline-block"
-                  strokeWidth={2}
-                />
-                <span className="text-sm font-medium">K</span>
-              </div>
-            </Button>
           </div>
 
           <div className="justify-self-center w-full">
             {/* <SearchBar /> */}
           </div>
 
-          <div className="justify-self-end lg:space-x-6 text-sm font-medium">
-            {/* <Button
-              className={cn(
-                'relative space-x-2 h-max bg-inherit px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
-                {
-                  'hover:bg-app-gray-100': !isCampaignPage,
-                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                    isCampaignPage && !isMenuOpen && !isContributePage,
-                }
-              )}
-            >
-              <span>Search</span>
-              <div className="flex items-center gap-0.5 text-app-gray-highlight-3">
-                <CommandIcon
-                  size={14}
-                  className="inline-block"
-                  strokeWidth={2}
-                />
-                <span className="text-sm font-medium">K</span>
-              </div>
-            </Button> */}
+          <div className="justify-self-end flex items-center lg:gap-6  text-sm font-medium">
+            <SearchBtn
+              className=""
+              isCampaignPage={isCampaignPage}
+              isMenuOpen={isMenuOpen}
+              isContributePage={isContributePage}
+            />
 
             <Link
               href={'/'}
-              className={cn('transparent-btn max-xl:hidden', {
+              className={cn('transparent-btn max-lg:hidden', {
                 'hover:bg-app-gray-100': !isCampaignPage,
                 'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
                   isCampaignPage && !isMenuOpen && !isContributePage,
