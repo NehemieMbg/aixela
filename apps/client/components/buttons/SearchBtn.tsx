@@ -37,7 +37,7 @@ const SearchBtn = ({
       )}
     >
       <span>Search</span>
-      <div className="flex items-center gap-0.5 text-app-gray-highlight-3 max-lg:hidden">
+      <div className="flex items-center gap-0.5 max-lg:hidden opacity-80">
         <CommandIcon size={14} className="inline-block" strokeWidth={2} />
         <span className="text-sm font-medium">K</span>
       </div>

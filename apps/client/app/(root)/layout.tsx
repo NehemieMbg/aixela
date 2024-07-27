@@ -5,6 +5,11 @@ import { user } from '@/constants';
 import { ReactNode } from 'react';
 import Search from '@/components/reusables/Search';
 
+/**
+ * Layout component
+ * @param children the children components
+ * @returns the layout component
+ */
 const layout = ({ children }: { children: ReactNode }) => {
   return (
     <StoreProvider user={user}>

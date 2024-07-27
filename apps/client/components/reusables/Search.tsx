@@ -45,7 +45,7 @@ const Search = () => {
 
       <div
         className={cn(
-          'fixed top-0 right-0 bottom-0 left-0 z-[310] flex pt-[160px] justify-center p-side',
+          'fixed top-0 right-0 bottom-0 left-0 z-[310] flex md:pt-10 lg:pt-[160px] justify-center md:p-side',
           {
             hidden: !isSearchOpen,
           }
@@ -53,7 +53,7 @@ const Search = () => {
       >
         <div
           ref={searchRef}
-          className="max-w-[648px] w-full h-max p-1 bg-app-gray-100 bg-opacity-95 backdrop-blur-md rounded-md shadow-sm border border-white"
+          className="md:max-w-[600px] w-full h-max p-1 bg-white bg-opacity-95 backdrop-blur-md md:rounded-lg shadow-sm "
         >
           <SearchForm isSearchOpen={isSearchOpen} />
         </div>
