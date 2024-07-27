@@ -137,7 +137,7 @@ const SearchForm = ({ isSearchOpen }: { isSearchOpen: boolean }) => {
       {/* //? Search Results */}
       <div
         className={cn(
-          'py-2 space-y-3 max-h-full md:max-h-[448px] overflow-hidden overflow-y-auto customScroll',
+          'py-2 space-y-3 max-h-[240px] md:max-h-[448px] overflow-hidden overflow-y-auto customScroll',
           {
             hidden:
               searchResults.users.length === 0 &&

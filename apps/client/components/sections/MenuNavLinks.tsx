@@ -52,6 +52,16 @@ const MenuNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           Account
         </Link>
 
+        <Link
+          href={'/dashboard'}
+          onClick={closeMenu}
+          className={cn('transparent-btn block w-max text-sm font-medium', {
+            hidden: !isUserLoggedIn,
+          })}
+        >
+          Dashboard
+        </Link>
+
         <Button
           onClick={() => dispatch(openNotification())}
           className={cn(
