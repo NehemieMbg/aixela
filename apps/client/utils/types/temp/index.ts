@@ -54,6 +54,7 @@ export interface Campaign {
   creator: User; // Information about the user who created the campaign
   contributors: Contributor[]; // List of contributors
   creationDate: Date;
+  status: 'completed' | 'on-going' | 'inactive';
 }
 
 export interface Contributor {

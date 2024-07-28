@@ -14,12 +14,13 @@ const Footer = () => {
   const pathname = usePathname();
   const isContributePage = pathname.includes('/contribute');
   const isAccountPage = pathname.includes('/account');
+  const isDashboardPage = pathname.includes('/dashboard');
 
   return (
     <footer
       className={cn(
         'flex max-sm:flex-col-reverse justify-center items-center gap-5 w-full p-6 text-sm font-medium bg-app-gray-100',
-        { hidden: isContributePage || isAccountPage }
+        { hidden: isContributePage || isAccountPage || isDashboardPage }
       )}
     >
       <p>

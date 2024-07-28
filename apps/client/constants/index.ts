@@ -51,6 +51,17 @@ export const accountNavLinks = [
   },
 ];
 
+export const dashboardNavLinks = [
+  {
+    label: 'Dashboard',
+    href: '/dashboard',
+  },
+  {
+    label: 'My Campaigns',
+    href: '/dashboard/my-campaigns',
+  },
+];
+
 // ! FAKE TEMP DATA
 
 export const users: User[] = [
@@ -517,6 +528,7 @@ export const campaigns: Campaign[] = [
     currentAmount: 350000,
     startDate: new Date('2024-01-01'),
     endDate: new Date('2024-12-31'),
+    status: 'on-going',
     creator: {
       id: 1,
       fullName: 'Naomi Liu',
@@ -798,6 +810,7 @@ export const campaigns: Campaign[] = [
       'QuantumLeap is at the forefront of quantum computing, developing powerful algorithms and hardware to solve the world’s most complex problems. Join us as we push the boundaries of science and technology.',
     targetAmount: 750000,
     currentAmount: 750000,
+    status: 'completed',
     startDate: new Date('2024-02-01'),
     endDate: new Date('2024-11-30'),
     creator: {
@@ -883,6 +896,7 @@ export const campaigns: Campaign[] = [
       'BioFusion is dedicated to developing innovative biotechnologies that enhance medical treatments and improve quality of life. Be part of a movement that’s transforming healthcare from the ground up.',
     targetAmount: 600000,
     currentAmount: 300000,
+    status: 'inactive',
     startDate: new Date('2024-03-01'),
     endDate: new Date('2024-12-31'),
     creator: {
@@ -968,6 +982,7 @@ export const campaigns: Campaign[] = [
       'EcoSustain focuses on developing eco-friendly technologies that reduce carbon footprint and promote sustainable living. Join us in making the world a better place for future generations.',
     targetAmount: 400000,
     currentAmount: 220000,
+    status: 'on-going',
     startDate: new Date('2024-04-01'),
     endDate: new Date('2024-11-30'),
     creator: {
@@ -1053,6 +1068,7 @@ export const campaigns: Campaign[] = [
       'EcoSustain focuses on developing eco-friendly technologies that reduce carbon footprint and promote sustainable living. Join us in making the world a better place for future generations.',
     targetAmount: 400000,
     currentAmount: 220000,
+    status: 'on-going',
     startDate: new Date('2024-04-01'),
     endDate: new Date('2024-11-30'),
     creator: {
@@ -1138,6 +1154,7 @@ export const campaigns: Campaign[] = [
       'AI4Good is dedicated to using artificial intelligence to address global challenges such as poverty, health crises, and climate change. Join us in harnessing AI for a better world.',
     targetAmount: 800000,
     currentAmount: 500000,
+    status: 'on-going',
     startDate: new Date('2024-05-01'),
     endDate: new Date('2024-12-31'),
     creator: {
@@ -1223,6 +1240,7 @@ export const campaigns: Campaign[] = [
       'SpaceXploration aims to make space exploration more accessible through cutting-edge technology and innovative solutions. Join us in pushing the boundaries of what is possible in space.',
     targetAmount: 1000000,
     currentAmount: 700000,
+    status: 'on-going',
     startDate: new Date('2024-06-01'),
     endDate: new Date('2025-05-31'),
     creator: {
@@ -1308,6 +1326,7 @@ export const campaigns: Campaign[] = [
       'MedTech Innovators is focused on developing advanced medical technologies that enhance patient care and improve health outcomes. Join us in transforming the healthcare landscape.',
     targetAmount: 700000,
     currentAmount: 450000,
+    status: 'on-going',
     startDate: new Date('2024-07-01'),
     endDate: new Date('2025-06-30'),
     creator: {

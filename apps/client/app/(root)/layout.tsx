@@ -17,7 +17,7 @@ const layout = ({ children }: { children: ReactNode }) => {
         <Navbar />
         <Search />
 
-        <div>{children}</div>
+        <div className="relative">{children}</div>
 
         <Footer />
       </div>

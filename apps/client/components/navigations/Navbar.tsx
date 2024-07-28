@@ -24,6 +24,7 @@ const Navbar = () => {
   const pathname = usePathname();
   const isCampaignPage = pathname.includes('/campaigns');
   const isContributePage = pathname.includes('/contribute');
+  const isDashboardPage = pathname.includes('/dashboard');
 
   const dispatch = useAppDispatch();
 
@@ -75,7 +76,7 @@ const Navbar = () => {
 
       <div
         ref={navContainerRef}
-        className={cn('top-0 z-[100] min-h-16 w-full', {
+        className={cn('top-0 z-[100] min-h-[60px] w-full', {
           sticky: !isCampaignPage,
           absolute: isCampaignPage,
         })}
@@ -87,7 +88,9 @@ const Navbar = () => {
               'backdrop-blur-sm bg-opacity-95': !isMenuOpen,
               'text-white bg-transparent':
                 isCampaignPage && !isMenuOpen && !isContributePage,
+
               'bg-white': !isCampaignPage || isMenuOpen || isContributePage,
+              'bg-app-gray-100': isDashboardPage && !isMenuOpen,
             }
           )}
         >
@@ -100,9 +103,7 @@ const Navbar = () => {
             />
           </div>
 
-          <div className="justify-self-center w-full">
-            {/* <SearchBar /> */}
-          </div>
+          <div className="w-full"></div>
 
           <div className="justify-self-end flex items-center lg:gap-6  text-sm font-medium">
             <SearchBtn
@@ -114,6 +115,7 @@ const Navbar = () => {
 
             <Link
               href={'/'}
+              onClick={() => setIsMenuOpen((prev) => (prev ? false : prev))} //? Close menu on click
               className={cn('transparent-btn max-lg:hidden', {
                 'hover:bg-app-gray-100': !isCampaignPage,
                 'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':

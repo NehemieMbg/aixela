@@ -30,8 +30,6 @@ const SearchForm = ({ isSearchOpen }: { isSearchOpen: boolean }) => {
     campaigns: [] as Campaign[],
   });
 
-  console.log(searchResults);
-
   //? Debounce the query to prevent too many API calls
   useEffect(() => {
     const handler = setTimeout(() => {
