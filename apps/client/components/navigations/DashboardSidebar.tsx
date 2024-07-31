@@ -10,7 +10,7 @@ const DashboardSidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="sticky top-[104px]">
+    <div className="sticky top-[104px] max-xl:flex gap-5 items-center">
       {dashboardNavLinks.map((link) => {
         const isActive = pathname === link.href;
 
@@ -19,7 +19,7 @@ const DashboardSidebar = () => {
             href={link.href}
             key={link.href}
             className={cn(
-              'block text-sm font-medium text-app-gray-300 w-full md:pr-3.5  py-2.5 hover:text-app-gray-950 transition-colors duration-200 rounded-md max-md:w-max',
+              'block text-sm font-medium text-app-gray-300 w-full md:pr-3.5  py-2.5 hover:text-app-gray-950 transition-colors duration-200 rounded-md max-xl:w-max',
               {
                 'font-semibold text-app-gray-950': isActive,
               }

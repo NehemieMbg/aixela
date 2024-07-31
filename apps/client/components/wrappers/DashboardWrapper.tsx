@@ -10,7 +10,7 @@ const DashboardWrapper = ({
   children: ReactNode;
 }) => {
   return (
-    <div className="space-y-10">
+    <div className="relative space-y-10 h-full">
       <div className="space-y-2">
         <h1 className="text-xl font-medium">{title}</h1>
         <p className="text-sm font-medium text-app-gray-highlight-3">
