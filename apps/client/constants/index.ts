@@ -9,19 +9,28 @@ export const notFound = {
 export const footerLinks = [
   {
     label: 'Campaigns',
+    target: '',
     href: '/',
   },
   {
     label: 'Start a campaign',
+    target: '',
     href: '/',
   },
   {
     label: 'About us',
+    target: '',
     href: '/',
   },
   {
+    label: 'Linked In',
+    target: '_blank',
+    href: 'https://www.linkedin.com/in/nehemie-mombanga',
+  },
+  {
     label: 'Github',
-    href: '/',
+    target: '_blank',
+    href: 'https://github.com/NehemieMbg/aixela',
   },
 ];
 

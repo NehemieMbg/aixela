@@ -77,7 +77,7 @@ const CampaignCard = ({
       </AspectRatio>
 
       <div className="w-full space-y-2">
-        <div className="w-full text-sm leading-tight font-medium text-app-gray-900 space-x-1">
+        <div className="w-full text-sm md:text-[15px] leading-tight font-medium text-app-gray-900 space-x-1">
           <Link
             href={`/campaigns/${campaign.id}`}
             className="font-semibold inline-block"
