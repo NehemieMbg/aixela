@@ -56,7 +56,7 @@ export class AuthController {
   /**
    * Initiates the Google OAuth2 login flow
    */
-  @Get('/google')
+  @Get('/google/sign-in')
   @UseGuards(GoogleOAuthGuard)
   async googleAuth() {}
 
