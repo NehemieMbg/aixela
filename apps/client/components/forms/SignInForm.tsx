@@ -17,6 +17,7 @@ import { signInSchema } from '@/utils/schemas/AuthSchemas';
 import Link from 'next/link';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 import PasswordInput from '../inputs/PasswordInput';
+import { credentialSignInAction } from '@/utils/actions/authentication/signInAction';
 
 /**
  * Sign in form
@@ -33,10 +34,15 @@ const SignInForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signInSchema>) {
+  async function onSubmit(values: z.infer<typeof signInSchema>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
-    console.log(values);
+    try {
+      const response = await credentialSignInAction(values);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (

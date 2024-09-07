@@ -7,6 +7,8 @@ import Separator from '@/components/reusables/Separator';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import Aixela from '../logo/Aixela';
+import server from '@/utils/server/server';
+import { googleSignInAction } from '@/utils/actions/authentication/signInAction';
 
 /**
  * This is the authentication wrapper component used for both the sign-in and sign-up pages.
@@ -38,7 +40,12 @@ const AuthenticationWrapper = ({
   };
 
   const handleGoogleSignIn = async () => {
-    return;
+    try {
+      const response = await googleSignInAction();
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
