@@ -1,0 +1,45 @@
+### Create new user
+POST http://localhost:3000/auth/sign-up
+Content-Type: application/json
+
+{
+  "firstName": "Nehemie",
+  "lastName": "Mombanga",
+  "username": "6nehemie@test.com",
+  "password": "testtest"
+}
+
+### Google OAuth SignIn
+GET http://localhost:3000/auth/google
+
+### Sign in user
+POST http://localhost:3000/auth/sign-in
+Content-Type: application/json
+
+{
+  "username": "6nehemie@test.com",
+  "password": "testtest"
+}
+
+### Initiate User Password Reset
+POST http://localhost:3000/auth/request-password-reset
+Content-Type: application/json
+
+{
+  "email": "nehemie.mbg@gmail.com"
+}
+
+### Update User password
+POST http://localhost:3000/auth/reset-password
+Content-Type: application/json
+Authorization: Bearer
+
+{
+  "resetToken": "",
+  "newPassword": "testtest"
+}
+
+
+### Get current user
+GET http://localhost:3000/auth/me
+Authorization: Bearer 

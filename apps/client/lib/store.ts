@@ -2,6 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import userSlice from './features/user/userSlice';
 import notificationSlice from './features/Navigation/NotificationSlice';
 import searchSlice from './features/search/SearchSlice';
+import campaignSlice from './features/campaign/CampaignSlice';
 
 export const makeStore = () => {
   return configureStore({
@@ -9,6 +10,7 @@ export const makeStore = () => {
       user: userSlice,
       notification: notificationSlice,
       search: searchSlice,
+      campaign: campaignSlice,
     },
   });
 };
