@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { Button } from '../ui/button';
+import signOut from '@/utils/actions/authentication/signOutAction';
 
 /**
  * Menu Nav Links component
@@ -18,7 +19,7 @@ const MenuNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const isUserLoggedIn = !!user;
 
   const handleSignOut = () => {
-    closeMenu();
+    signOut();
   };
 
   return (

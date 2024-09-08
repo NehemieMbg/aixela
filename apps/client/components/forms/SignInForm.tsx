@@ -18,12 +18,15 @@ import Link from 'next/link';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 import PasswordInput from '../inputs/PasswordInput';
 import { credentialSignInAction } from '@/utils/actions/authentication/signInAction';
+import { useRouter } from 'next/navigation';
 
 /**
  * Sign in form
  * @returns the sign in form
  */
 const SignInForm = () => {
+  const router = useRouter();
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
@@ -35,13 +38,13 @@ const SignInForm = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signInSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    try {
-      const response = await credentialSignInAction(values);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
+    const error = await credentialSignInAction(values);
+
+    if (error) {
+      form.setError('email', { message: error.email || '' });
+      form.setError('password', { message: error.password || '' });
+    } else {
+      router.push('/');
     }
   }
 
