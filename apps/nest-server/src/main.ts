@@ -12,8 +12,8 @@ async function bootstrap() {
   // Applies global validation pipes for request validation.
   app.useGlobalPipes(new ValidationPipe());
 
-  // Starts the application and listens on port 5678.
-  await app.listen(5678);
+  // Starts the application and listens on port 3000.
+  await app.listen(3000);
 }
 
 bootstrap();

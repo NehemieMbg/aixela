@@ -4,6 +4,7 @@ import {
   Get,
   Post,
   Request,
+  Response,
   UseGuards,
 } from '@nestjs/common';
 import { CreateUserDto } from '../users/dto/create-user.dto';
@@ -15,6 +16,9 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { GoogleOAuthGuard } from './guards/google-oauth.guard';
 import { RequestPasswordResetDto } from './dto/request-password-reset.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
+import * as process from 'node:process';
+
+// import { Response } from 'express'; // Ensure this import is present
 
 @Controller('auth')
 export class AuthController {
@@ -67,8 +71,12 @@ export class AuthController {
    */
   @Get('/google-redirect')
   @UseGuards(GoogleOAuthGuard)
-  googleAuthRedirect(@Request() request) {
-    return this.authService.googleSignIn(request);
+  async googleAuthRedirect(@Request() request, @Response() response) {
+    const signedInObject = await this.authService.googleSignIn(request);
+
+    response.redirect(
+      `${process.env.FRONTEND_URL}/auth/callback?token=${signedInObject.accessToken}`,
+    );
   }
 
   /**
