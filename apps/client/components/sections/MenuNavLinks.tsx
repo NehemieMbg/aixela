@@ -20,6 +20,7 @@ const MenuNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
 
   const handleSignOut = () => {
     signOut();
+    closeMenu();
   };
 
   return (
