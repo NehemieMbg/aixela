@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { render } from '@react-email/render';
 import SignupTemplate from '../../emails/signup-template';
 import * as process from 'node:process';
+import EmailConfirmationTemplate from '../../emails/email-confirmation-template';
 
 export interface ResendError {
   statusCode: number;
@@ -36,7 +37,6 @@ export class EmailService {
     });
 
     if (error as ResendError) {
-      console.log(error);
       throw new InternalServerErrorException(error.message);
     }
   }
@@ -54,12 +54,33 @@ export class EmailService {
     const { error } = await this.resend.emails.send({
       from: `${process.env.EMAIL_NAME} <${process.env.RESEND_EMAIL}>`,
       to,
-      subject: 'Confirm your email address',
+      subject: 'verify your account',
       html: emailHtml, // Pass the rendered HTML here
     });
 
     if (error as ResendError) {
-      console.log(error);
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
+  async accountConfirmationEmail(
+    to: string,
+    name: string,
+    confirmationLink: string,
+  ): Promise<void> {
+    // Render the SignupTemplate React component to an HTML string
+    const emailHtml: string = await render(
+      EmailConfirmationTemplate({ fullName: name, confirmationLink }),
+    );
+
+    const { error } = await this.resend.emails.send({
+      from: `${process.env.EMAIL_NAME} <${process.env.RESEND_EMAIL}>`,
+      to,
+      subject: 'Verify your account',
+      html: emailHtml, // Pass the rendered HTML here
+    });
+
+    if (error as ResendError) {
       throw new InternalServerErrorException(error.message);
     }
   }

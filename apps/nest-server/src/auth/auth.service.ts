@@ -40,7 +40,7 @@ export class AuthService {
     await this.emailService.signUpEmail(
       body.username,
       body.fullName,
-      `http://localhost:3000/auth/confirm-email?token=${confirmationToken}`,
+      `${process.env.SERVER_URL}/auth/confirm-email?token=${confirmationToken}`,
     );
 
     const accessToken: string = await this.generateToken(
@@ -53,6 +53,41 @@ export class AuthService {
       username: user.username,
       accessToken,
     };
+  }
+
+  /**
+   * Sends a confirmation email to the user.
+   * @param username - The username of the user.
+   * @returns A promise that resolves to a message indicating the status of the request.
+   * @throws BadRequestException if the user does not exist.
+   * @throws BadRequestException if the user's email is already confirmed.
+   * @returns A promise that resolves to a message indicating the status of the request.
+   */
+  async getConfirmToken(username: string): Promise<string> {
+    const user: User | null = await this.userService.findOne(username);
+
+    if (!user) {
+      throw new BadRequestException('User does not exist');
+    }
+
+    if (user.isConfirmed) {
+      throw new BadRequestException('Email is already confirmed');
+    }
+
+    const confirmationToken: string = await this.generateToken(
+      user.id,
+      user.username,
+      '1h',
+    );
+
+    // send email to user with token to confirm email, expires in 1 hour
+    await this.emailService.accountConfirmationEmail(
+      user.username,
+      user.fullName,
+      `${process.env.SERVER_URL}/auth/confirm-email?token=${confirmationToken}`,
+    );
+
+    return 'Email confirmation token sent';
   }
 
   /**
@@ -162,7 +197,7 @@ export class AuthService {
     user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour from now
     await this.userService.saveUser(user);
 
-    const resetUrl = `http://yourfrontend.com/reset-password?token=${resetToken}`;
+    const resetUrl: string = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
 
     await this.emailService.sendEmail(
       process.env.RESEND_EMAIL,

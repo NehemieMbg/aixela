@@ -17,16 +17,17 @@ interface SignupTemplateProps {
   confirmationLink?: string;
 }
 
-const SignupTemplate = ({
+const EmailConfirmationTemplate = ({
   fullName,
   confirmationLink,
 }: SignupTemplateProps) => (
   <Html>
     <Head />
     <Preview>
-      Dear {fullName || 'Naomi Liu'}, We're excited to have you on board. To
-      complete your registration...
+      Dear {fullName || 'Naomi Liu'}, Here is your confirmation link to access
+      your Aixela account
     </Preview>
+
     <Body style={main}>
       <Container style={container}>
         <Heading style={h1}>Verify Your Aixela Account</Heading>
@@ -36,9 +37,7 @@ const SignupTemplate = ({
         </Text>
 
         <Text style={{ ...text, marginBottom: '14px' }}>
-          Welcome to Aixela! We're excited to have you on board. To complete
-          your registration, please confirm your email address by clicking the
-          link below:
+          Here is your confirmation link to access your Aixela account:
         </Text>
 
         <Button
@@ -54,19 +53,13 @@ const SignupTemplate = ({
         </Button>
 
         <Text style={{ ...text, marginBottom: '14px' }}>
-          By confirming your email, you'll be able to access all the features
-          and benefits of your account.
+          If you didn't request this email, please ignore it.
         </Text>
 
-        <Text
-          style={{
-            ...text,
-            color: '#ababab',
-            marginTop: '14px',
-            marginBottom: '60px',
-          }}
-        >
-          If you didn&apos;t sign up for Aixela, please ignore this email.
+        <Text style={{ ...text, marginBottom: '40px' }}>
+          Best regards,
+          <br />
+          The Aixela Team
         </Text>
 
         <Img
@@ -152,4 +145,4 @@ const footer = {
   marginBottom: '24px',
 };
 
-export default SignupTemplate;
+export default EmailConfirmationTemplate;

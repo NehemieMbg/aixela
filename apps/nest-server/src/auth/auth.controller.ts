@@ -66,6 +66,17 @@ export class AuthController {
   }
 
   /**
+   * Get the email confirmation token for the current user.
+   * @param request - The request object containing user information.
+   * @returns The email confirmation token.
+   */
+  @Get('/confirm-email-token')
+  @UseGuards(JwtAuthGuard)
+  getConfirmToken(@Request() request) {
+    return this.authService.getConfirmToken(request.user.username);
+  }
+
+  /**
    * Get the current user profile.
    * @param request - The request object containing user information.
    * @returns The current authenticated user.
