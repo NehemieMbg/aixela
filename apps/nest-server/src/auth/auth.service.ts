@@ -30,6 +30,19 @@ export class AuthService {
       throw new BadRequestException('User already exists');
     }
 
+    const confirmationToken: string = await this.generateToken(
+      user.id,
+      user.username,
+      '1h',
+    );
+
+    // send email to user with token to confirm email, expires in 1 hour
+    await this.emailService.signUpEmail(
+      body.username,
+      body.fullName,
+      `http://localhost:3000/auth/confirm-email?token=${confirmationToken}`,
+    );
+
     const accessToken: string = await this.generateToken(
       user.id,
       user.username,
@@ -58,6 +71,34 @@ export class AuthService {
       username: user.username,
       accessToken,
     };
+  }
+
+  /**
+   * Confirms a user's email address.
+   * @param token - The confirmation token.
+   * @returns A promise that resolves to true if the email is confirmed.
+   */
+  async confirmEmail(token: string): Promise<boolean> {
+    if (!token) {
+      throw new BadRequestException('Invalid token');
+    }
+
+    let user: User | null;
+
+    try {
+      const { username } = await this.jwtService.verifyAsync(token);
+
+      console.log(username);
+
+      user = await this.userService.findOne(username);
+
+      user.isConfirmed = true;
+      await this.userService.saveUser(user);
+
+      return user.isConfirmed;
+    } catch (error) {
+      return false;
+    }
   }
 
   /**

@@ -6,13 +6,19 @@ export class User {
   id: number;
 
   @Column()
-  firstName: string;
-
-  @Column()
-  lastName: string;
+  fullName: string;
 
   @Column()
   username: string;
+
+  @Column({ nullable: true })
+  avatarUrl: string;
+
+  @Column({ nullable: true })
+  title: string;
+
+  @Column({ nullable: true })
+  location: string;
 
   @Column({ nullable: true }) // for oauth
   password: string;
@@ -23,14 +29,11 @@ export class User {
   @Column({ nullable: true })
   resetPasswordExpires?: Date;
 
-  constructor(
-    firstName: string,
-    lastName: string,
-    username: string,
-    password?: string,
-  ) {
-    this.firstName = firstName;
-    this.lastName = lastName;
+  @Column({ default: false })
+  isConfirmed?: boolean;
+
+  constructor(fullName: string, username: string, password?: string) {
+    this.fullName = fullName;
     this.username = username;
     this.password = password;
   }

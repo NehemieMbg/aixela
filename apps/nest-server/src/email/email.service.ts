@@ -1,5 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { Resend } from 'resend';
+import { render } from '@react-email/render';
+import SignupTemplate from '../../emails/signup-template';
 import * as process from 'node:process';
 
 export interface ResendError {
@@ -31,6 +33,29 @@ export class EmailService {
       to,
       subject,
       html: `<strong>${text}</strong>`,
+    });
+
+    if (error as ResendError) {
+      console.log(error);
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
+  async signUpEmail(
+    to: string,
+    name: string,
+    confirmationLink: string,
+  ): Promise<void> {
+    // Render the SignupTemplate React component to an HTML string
+    const emailHtml: string = await render(
+      SignupTemplate({ fullName: name, confirmationLink }),
+    );
+
+    const { error } = await this.resend.emails.send({
+      from: `${process.env.EMAIL_NAME} <${process.env.RESEND_EMAIL}>`,
+      to,
+      subject: 'Confirm your email address',
+      html: emailHtml, // Pass the rendered HTML here
     });
 
     if (error as ResendError) {

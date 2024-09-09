@@ -20,8 +20,7 @@ interface JwtPayload {
 }
 
 type UserObject = {
-  firstName: string;
-  lastName: string;
+  fullName: string;
   userId: string;
   username: string;
 };
@@ -46,8 +45,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
 
     return {
       userId: payload.sub,
-      firstName: user.firstName,
-      lastName: user.lastName,
+      fullName: user.fullName,
       username: payload.username,
     };
   }

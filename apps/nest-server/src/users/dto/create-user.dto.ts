@@ -5,14 +5,9 @@ import { IsEmail, IsString, MinLength } from 'class-validator';
  */
 export class CreateUserDto {
   @IsString({
-    message: 'First name is required',
+    message: 'Name is required',
   })
-  firstName: string;
-
-  @IsString({
-    message: 'Last name is required',
-  })
-  lastName: string;
+  fullName: string;
 
   @IsEmail()
   username: string;

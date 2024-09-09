@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Query,
   Request,
   Response,
   UseGuards,
@@ -17,6 +18,7 @@ import { GoogleOAuthGuard } from './guards/google-oauth.guard';
 import { RequestPasswordResetDto } from './dto/request-password-reset.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import * as process from 'node:process';
+import { ConfirmEmailDto } from './dto/confirm-email.dto';
 
 // import { Response } from 'express'; // Ensure this import is present
 
@@ -44,6 +46,23 @@ export class AuthController {
   @UseGuards(LocalAuthGuard)
   async login(@Request() request): Promise<AuthDto> {
     return this.authService.signIn(request.user);
+  }
+
+  /**
+   * Confirm the user's email address.
+   * @param query - The query object containing the email confirmation token.
+   * @param response - The response object used to redirect the user.
+   * @returns Redirects the user to the frontend URL with the confirmation result.
+   */
+  @Get('/confirm-email')
+  async confirmEmail(@Query() query: ConfirmEmailDto, @Response() response) {
+    const isConfirmed: boolean = await this.authService.confirmEmail(
+      query.token,
+    );
+
+    response.redirect(
+      `${process.env.FRONTEND_URL}/confirm-email?succeeded=${isConfirmed}`,
+    );
   }
 
   /**

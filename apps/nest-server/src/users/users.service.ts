@@ -28,8 +28,7 @@ export class UsersService {
 
     const user: User = await this.userRepository.create(
       new User(
-        body.firstName,
-        body.lastName,
+        body.fullName,
         body.username,
         await this.passwordService.encode(body.password),
       ),
@@ -54,6 +53,7 @@ export class UsersService {
     const user: User = await this.userRepository.create(
       new User(body.firstName, body.lastName, body.email),
     );
+    user.isConfirmed = true;
 
     await this.userRepository.save(user);
 
