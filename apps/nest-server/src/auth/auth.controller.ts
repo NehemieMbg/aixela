@@ -61,7 +61,7 @@ export class AuthController {
     );
 
     response.redirect(
-      `${process.env.FRONTEND_URL}/confirm-email?succeeded=${isConfirmed}`,
+      `${process.env.FRONTEND_URL}/confirm-account?succeeded=${isConfirmed}`,
     );
   }
 
