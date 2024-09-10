@@ -1,7 +1,8 @@
+import { CurrentUser } from '@/utils/types/authentication';
 import { User } from '@/utils/types/temp';
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState: User = {
+const initialState: User | CurrentUser = {
   id: 0,
   fullName: '',
   username: '',
@@ -9,6 +10,7 @@ const initialState: User = {
   avatarUrl: '',
   title: '',
   location: '',
+  isConfirmed: true,
   links: {
     website: '',
     twitter: '',

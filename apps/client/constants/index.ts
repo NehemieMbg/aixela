@@ -349,6 +349,7 @@ export const user: User = {
   fullName: 'Naomi Liu',
   username: 'naomiliu',
   email: 'naomie.liu@test.com',
+  isConfirmed: true,
   avatarUrl:
     'https://utfs.io/f/3c36aa0e-763a-4deb-a4b5-e4ad5a6cfb8a-5nt0h7.png',
   title: 'CEO NeuraTech & former Google software engineer',

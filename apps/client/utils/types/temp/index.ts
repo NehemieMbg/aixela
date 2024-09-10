@@ -28,6 +28,7 @@ export interface User {
   avatarUrl?: string; // Optional URL to the user's avatar
   title: string;
   location: string;
+  isConfirmed: boolean;
   links: {
     website?: string;
     twitter?: string;

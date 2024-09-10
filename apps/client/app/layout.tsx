@@ -6,6 +6,7 @@ import { user as tempUser } from '@/constants';
 import StoreProvider from '@/providers/StoreProvider';
 import { getCurrentUserAction } from '@/utils/actions/authentication/getUserAction';
 import { User } from '@/utils/types/temp';
+import ConfirmAccountCard from '@/components/cards/ConfirmAccountCard';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -31,6 +32,8 @@ export default async function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <main>
+          {user && <ConfirmAccountCard isConfirmed={user.isConfirmed} />}
+
           <StoreProvider user={user as User | undefined}>
             {children}
           </StoreProvider>
