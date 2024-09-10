@@ -8,10 +8,7 @@ export class UserDto {
   id: number;
 
   @Expose()
-  firstName: string;
-
-  @Expose()
-  lastName: string;
+  fullName: string;
 
   @Expose()
   username: string;
