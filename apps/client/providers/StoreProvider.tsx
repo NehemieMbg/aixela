@@ -5,6 +5,12 @@ import { makeStore, AppStore } from '@/lib/store';
 import { setUser } from '@/lib/features/user/userSlice';
 import { User } from '@/utils/types/temp';
 
+/**
+ * Store provider
+ * @param user the user
+ * @param children the children components
+ * @returns the store provider
+ */
 export default function StoreProvider({
   user,
   children,
