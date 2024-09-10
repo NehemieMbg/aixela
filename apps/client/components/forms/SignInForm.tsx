@@ -19,6 +19,7 @@ import SubmitPrimary from '../buttons/SubmitPrimary';
 import PasswordInput from '../inputs/PasswordInput';
 import { credentialSignInAction } from '@/utils/actions/authentication/signInAction';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 /**
  * Sign in form
@@ -26,6 +27,7 @@ import { useRouter } from 'next/navigation';
  */
 const SignInForm = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof signInSchema>>({
@@ -38,12 +40,14 @@ const SignInForm = () => {
 
   // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signInSchema>) {
+    setIsLoading(true);
     const error = await credentialSignInAction(values);
 
     if (error) {
-      form.setError('email', { message: error.email || '' });
-      form.setError('password', { message: error.password || '' });
+      form.setError('email', { message: error.email });
+      setIsLoading(false);
     } else {
+      setIsLoading(false);
       router.push('/');
     }
   }
@@ -98,7 +102,7 @@ const SignInForm = () => {
           </div>
         </div>
 
-        <SubmitPrimary>Sign in</SubmitPrimary>
+        <SubmitPrimary isLoading={isLoading}>Sign in</SubmitPrimary>
       </form>
     </Form>
   );

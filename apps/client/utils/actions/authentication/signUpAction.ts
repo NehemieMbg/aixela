@@ -4,16 +4,16 @@ import { getErrorMessage } from '@/utils/functions';
 import server from '@/utils/server/server';
 import { AuthResponse } from '@/utils/types/authentication';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
 
-interface SignInRequest {
+interface SignUpDto {
+  fullName: string;
   email: string;
   password: string;
 }
 
-// Error messages for the sign in action
+// Error messages for the sign up action
 const errorMessages = {
-  email: ['Wrong credentials'],
+  email: ['User already exists'],
 };
 
 /**
@@ -22,15 +22,16 @@ const errorMessages = {
  * @throws error if sign in fails
  *
  */
-export const credentialSignInAction = async (request: SignInRequest) => {
+export const signUpAction = async (request: SignUpDto) => {
   const body = {
+    fullName: request.fullName,
     username: request.email,
     password: request.password,
   };
 
   try {
     const { data }: { data: AuthResponse } = await server.post(
-      '/auth/sign-in',
+      '/auth/sign-up',
       body
     );
 
@@ -52,8 +53,4 @@ export const credentialSignInAction = async (request: SignInRequest) => {
       email: getErrorMessage(errorObject?.message, errorMessages.email),
     };
   }
-};
-
-export const googleSignInAction = async () => {
-  redirect(`${process.env.SERVER_URL}/auth/google-redirect`);
 };

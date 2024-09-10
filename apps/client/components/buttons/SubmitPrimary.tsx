@@ -11,15 +11,18 @@ const SubmitPrimary = ({
   children,
   className,
   asChild,
+  isLoading,
 }: {
   children: ReactNode;
   className?: string;
   asChild?: boolean;
+  isLoading?: boolean;
 }) => {
   return (
     <Button
       type="submit"
       asChild={asChild}
+      disabled={isLoading}
       className={cn(
         'w-full bg-app-blue-primary hover:bg-app-blue-secondary hover:backdrop-brightness-75 text-white h-11',
         {

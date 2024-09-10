@@ -16,12 +16,18 @@ import { Input } from '@/components/ui/input';
 import { signUpSchema } from '@/utils/schemas/AuthSchemas';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 import PasswordInput from '../inputs/PasswordInput';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { signUpAction } from '@/utils/actions/authentication/signUpAction';
 
 /**
  * Sign up form
  * @returns the sign up form
  */
 const SignUpForm = () => {
+  const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof signUpSchema>>({
     resolver: zodResolver(signUpSchema),
@@ -33,10 +39,17 @@ const SignUpForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof signUpSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof signUpSchema>) {
+    setIsLoading(true);
+    const error = await signUpAction(values);
+
+    if (error) {
+      form.setError('email', { message: error.email });
+      setIsLoading(false);
+    } else {
+      setIsLoading(false);
+      router.push('/');
+    }
   }
 
   return (
@@ -94,7 +107,7 @@ const SignUpForm = () => {
           />
         </div>
 
-        <SubmitPrimary>Sign up</SubmitPrimary>
+        <SubmitPrimary isLoading={isLoading}>Sign up</SubmitPrimary>
       </form>
     </Form>
   );
