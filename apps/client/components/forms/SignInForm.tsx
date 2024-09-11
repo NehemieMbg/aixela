@@ -40,7 +40,7 @@ const SignInForm = () => {
     const error = await credentialSignInAction(values);
 
     if (error) {
-      form.setError('email', { message: error.email });
+      form.setError('email', { message: error.email || '' }); // conditional chaining to avoid undefined
     }
 
     setIsLoading(false);
