@@ -10,6 +10,8 @@
  * // errorMessage === 'Not Found'
  */
 const getErrorMessage = (message: string, errors: string[]) => {
+  if (!message) return;
+
   for (const currentMsg of errors) {
     if (message.toLocaleLowerCase() === currentMsg.toLocaleLowerCase()) {
       return currentMsg;

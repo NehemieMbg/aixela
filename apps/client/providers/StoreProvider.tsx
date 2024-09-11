@@ -19,15 +19,14 @@ export default function StoreProvider({
   children: React.ReactNode;
 }) {
   const storeRef = useRef<AppStore>();
-  if (!storeRef.current) {
-    // Create the store instance the first time this renders
-    // and create initial state
-    storeRef.current = makeStore();
 
-    if (user) {
-      storeRef.current.dispatch(setUser(user));
-    }
+  if (!storeRef.current) {
+    // Initialize the store if it doesn't exist
+    storeRef.current = makeStore();
   }
+
+  // Update the user in the store
+  storeRef.current.dispatch(setUser(user || null));
 
   return <Provider store={storeRef.current}>{children}</Provider>;
 }

@@ -21,7 +21,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let user = (await getCurrentUserAction()) || tempUser; // ! tempUser is a temporary code to be removed
+  let user = await getCurrentUserAction(); // ! tempUser is a temporary code to be removed
 
   // ! Temporary code to be removed
   if (user) {

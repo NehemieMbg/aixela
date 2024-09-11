@@ -41,6 +41,8 @@ export const credentialSignInAction = async (request: SignInRequest) => {
       path: '/',
       maxAge: 60 * 60 * 24, // Cookie expiration: 1 day
     });
+
+    return redirect('/');
   } catch (error: any) {
     const errorObject = error.response?.data as {
       message: string;

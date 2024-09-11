@@ -3,7 +3,7 @@
 import useClickOutside from '@/hooks/useClickOutside';
 import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
 import { openSearch } from '@/lib/features/search/SearchSlice';
-import { useAppDispatch } from '@/lib/hooks';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -20,6 +20,8 @@ import Menu from './Menu';
  */
 const Navbar = () => {
   const hasNotification = !false;
+  const user = useAppSelector((state) => state.user);
+  const isLoggedIn = !!user;
 
   const pathname = usePathname();
   const isCampaignPage = pathname.includes('/campaigns');
@@ -125,32 +127,34 @@ const Navbar = () => {
               Campaigns
             </Link>
 
-            <Button
-              onClick={() => dispatch(openNotification())}
-              className={cn(
-                'relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
-                {
-                  'hover:bg-app-gray-100': !isCampaignPage,
-                  'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
-                    isCampaignPage && !isMenuOpen && !isContributePage,
-                }
-              )}
-            >
-              <span>Notifications</span>
-              <div
+            {isLoggedIn && (
+              <Button
+                onClick={() => dispatch(openNotification())}
                 className={cn(
-                  'absolute top-2 right-2 bg-red-500 size-1.5 rounded-full',
+                  'relative space-x-1 h-max bg-inherit hover:bg-app-gray-100 px-2.5 py-1.5 transition-colors duration-200 rounded-md text-inherit',
                   {
-                    hidden: !hasNotification,
+                    'hover:bg-app-gray-100': !isCampaignPage,
+                    'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                      isCampaignPage && !isMenuOpen && !isContributePage,
                   }
                 )}
-              ></div>
-              <div
-                className={cn('bg-red-500 size-1.5 rounded-full invisible', {
-                  hidden: !hasNotification,
-                })}
-              ></div>
-            </Button>
+              >
+                <span>Notifications</span>
+                <div
+                  className={cn(
+                    'absolute top-2 right-2 bg-red-500 size-1.5 rounded-full',
+                    {
+                      hidden: !hasNotification,
+                    }
+                  )}
+                ></div>
+                <div
+                  className={cn('bg-red-500 size-1.5 rounded-full invisible', {
+                    hidden: !hasNotification,
+                  })}
+                ></div>
+              </Button>
+            )}
 
             <Button
               onClick={() => setIsMenuOpen((prev) => !prev)}

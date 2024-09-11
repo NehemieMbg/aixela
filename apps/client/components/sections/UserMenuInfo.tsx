@@ -27,36 +27,38 @@ const UserMenuInfo = ({ closeMenu }: { closeMenu: () => void }) => {
 
   return (
     <div className={cn('space-y-10 lg:space-y-20 col-start-1 col-end-3', {})}>
-      <div
-        className={cn('space-y-8 lg:space-y-12', {
-          hidden: !isUserLoggedIn,
-        })}
-      >
-        <Link
-          href={`/${user.username}`}
-          onClick={closeMenu}
-          className="flex items-center gap-3 w-max"
+      {user && (
+        <div
+          className={cn('space-y-8 lg:space-y-12', {
+            hidden: !isUserLoggedIn,
+          })}
         >
-          <Avatar className="size-12">
-            <AvatarImage src={user.avatarUrl} />
-            <AvatarFallback>
-              <Skeleton />
-            </AvatarFallback>
-          </Avatar>
+          <Link
+            href={`/${user?.username}`}
+            onClick={closeMenu}
+            className="flex items-center gap-3 w-max"
+          >
+            <Avatar className="size-12">
+              <AvatarImage src={user?.avatarUrl} />
+              <AvatarFallback>
+                <Skeleton />
+              </AvatarFallback>
+            </Avatar>
 
-          <div className="space-y-1">
-            <h3 className="text-lg font-medium leading-none">
-              {user.fullName}
-            </h3>
-            <p className="text-sm text-app-gray-highlight-3 leading-none">
-              {user.email}
-            </p>
-          </div>
-        </Link>
+            <div className="space-y-1">
+              <h3 className="text-lg font-medium leading-none">
+                {user.fullName}
+              </h3>
+              <p className="text-sm text-app-gray-highlight-3 leading-none">
+                {user.email}
+              </p>
+            </div>
+          </Link>
 
-        {/* //? Latest Campaign */}
-        <LatestCampaign closeMenu={closeMenu} />
-      </div>
+          {/* //? Latest Campaign */}
+          <LatestCampaign closeMenu={closeMenu} />
+        </div>
+      )}
 
       <Button
         asChild

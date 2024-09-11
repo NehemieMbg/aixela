@@ -1,11 +1,12 @@
 'use client';
 
 import { openNotification } from '@/lib/features/Navigation/NotificationSlice';
+import { updateUser } from '@/lib/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
+import signOut from '@/utils/actions/authentication/signOutAction';
 import Link from 'next/link';
 import { Button } from '../ui/button';
-import signOut from '@/utils/actions/authentication/signOutAction';
 
 /**
  * Menu Nav Links component
@@ -19,8 +20,9 @@ const MenuNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
   const isUserLoggedIn = !!user;
 
   const handleSignOut = () => {
-    signOut();
+    dispatch(updateUser(null));
     closeMenu();
+    signOut();
   };
 
   return (
@@ -34,35 +36,35 @@ const MenuNavLinks = ({ closeMenu }: { closeMenu: () => void }) => {
           Campaigns
         </Link>
 
-        <Link
-          href={`/${user.username}/contribution`}
-          onClick={closeMenu}
-          className={cn('transparent-btn block w-max text-sm font-medium', {
-            hidden: !isUserLoggedIn,
-          })}
-        >
-          Saved & Contributed
-        </Link>
+        {isUserLoggedIn && (
+          <Link
+            href={`/${user.username}/contribution`}
+            onClick={closeMenu}
+            className={cn('transparent-btn block w-max text-sm font-medium')}
+          >
+            Saved & Contributed
+          </Link>
+        )}
 
-        <Link
-          href={'/account'}
-          onClick={closeMenu}
-          className={cn('transparent-btn block w-max text-sm font-medium', {
-            hidden: !isUserLoggedIn,
-          })}
-        >
-          Account
-        </Link>
+        {isUserLoggedIn && (
+          <Link
+            href={'/account'}
+            onClick={closeMenu}
+            className={cn('transparent-btn block w-max text-sm font-medium')}
+          >
+            Account
+          </Link>
+        )}
 
-        <Link
-          href={'/dashboard'}
-          onClick={closeMenu}
-          className={cn('transparent-btn block w-max text-sm font-medium', {
-            hidden: !isUserLoggedIn,
-          })}
-        >
-          Dashboard
-        </Link>
+        {isUserLoggedIn && (
+          <Link
+            href={'/dashboard'}
+            onClick={closeMenu}
+            className={cn('transparent-btn block w-max text-sm font-medium')}
+          >
+            Dashboard
+          </Link>
+        )}
 
         <Button
           onClick={() => dispatch(openNotification())}

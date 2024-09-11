@@ -13,23 +13,20 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { credentialSignInAction } from '@/utils/actions/authentication/signInAction';
 import { signInSchema } from '@/utils/schemas/AuthSchemas';
 import Link from 'next/link';
+import { useState } from 'react';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 import PasswordInput from '../inputs/PasswordInput';
-import { credentialSignInAction } from '@/utils/actions/authentication/signInAction';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 /**
  * Sign in form
  * @returns the sign in form
  */
 const SignInForm = () => {
-  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof signInSchema>>({
     resolver: zodResolver(signInSchema),
     defaultValues: {
@@ -38,18 +35,15 @@ const SignInForm = () => {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof signInSchema>) {
     setIsLoading(true);
     const error = await credentialSignInAction(values);
 
     if (error) {
       form.setError('email', { message: error.email });
-      setIsLoading(false);
-    } else {
-      setIsLoading(false);
-      router.push('/');
     }
+
+    setIsLoading(false);
   }
 
   return (
