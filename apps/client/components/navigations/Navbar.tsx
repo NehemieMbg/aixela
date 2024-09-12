@@ -127,6 +127,23 @@ const Navbar = () => {
               Campaigns
             </Link>
 
+            {!isLoggedIn && (
+              <Link
+                href={'/sign-in'}
+                onClick={() => setIsMenuOpen((prev) => (prev ? false : prev))} //? Close menu on click
+                className={cn(
+                  'transparent-btn max-lg:hidden whitespace-nowrap',
+                  {
+                    'hover:bg-app-gray-100': !isCampaignPage,
+                    'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
+                      isCampaignPage && !isMenuOpen && !isContributePage,
+                  }
+                )}
+              >
+                Sign In
+              </Link>
+            )}
+
             {isLoggedIn && (
               <Button
                 onClick={() => dispatch(openNotification())}
@@ -164,6 +181,7 @@ const Navbar = () => {
                   'hover:bg-app-gray-100': !isCampaignPage,
                   'backdrop-opacity-20 hover:bg-app-gray-900 hover:bg-opacity-35':
                     isCampaignPage && !isMenuOpen && !isContributePage,
+                  'lg:hidden': !isLoggedIn,
                 }
               )}
             >
@@ -175,7 +193,10 @@ const Navbar = () => {
         <Menu isOpen={isMenuOpen} closeMenu={handleCloseMenu} />
       </div>
 
-      <Backdrop isActive={isMenuOpen} />
+      <Backdrop
+        isActive={isMenuOpen}
+        className={!isLoggedIn ? 'lg:hidden' : ''}
+      />
     </>
   );
 };

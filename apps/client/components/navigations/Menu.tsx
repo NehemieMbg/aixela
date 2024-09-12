@@ -1,9 +1,10 @@
 import { cn } from '@/lib/utils';
-import MenuNavLinks from '../sections/MenuNavLinks';
-import UserMenuInfo from '../sections/UserMenuInfo';
-import Notifications from '../sections/Notifications';
-import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
+import MenuNavLinks from '../sections/MenuNavLinks';
+import Notifications from '../sections/Notifications';
+import UserMenuInfo from '../sections/UserMenuInfo';
+import { useAppSelector } from '@/lib/hooks';
 
 /**
  * Menu component
@@ -18,6 +19,9 @@ const Menu = ({
   closeMenu: () => void;
 }) => {
   const pathname = usePathname();
+  const user = useAppSelector((state) => state.user);
+  const isLoggedIn = !!user;
+
   const isCampaignPage = pathname.includes('/campaigns');
 
   const [topPosition, setTopPosition] = useState(60); // Initial top position
@@ -46,6 +50,7 @@ const Menu = ({
           {
             '-translate-y-[100%] opacity-0 pointer-events-none': !isOpen,
             'translate-y-0 opacity-100': isOpen,
+            'lg:hidden': !isLoggedIn,
           }
         )}
         style={{ top: `${topPosition}px` }} // Dynamically set top position
@@ -58,7 +63,7 @@ const Menu = ({
         </div>
       </div>
 
-      <Notifications />
+      {isLoggedIn && <Notifications />}
     </>
   );
 };

@@ -10,9 +10,11 @@ import { cn } from '@/lib/utils';
 const Backdrop = ({
   isActive,
   zIndex = 80,
+  className,
 }: {
   isActive: boolean;
   zIndex?: number;
+  className?: string;
 }) => {
   useEffect(() => {
     if (isActive) {
@@ -33,6 +35,7 @@ const Backdrop = ({
         {
           'opacity-0 pointer-events-none': !isActive,
           'opacity-100 pointer-events-auto': isActive,
+          [`${className}`]: className,
         }
       )}
       style={{ zIndex: zIndex }}
