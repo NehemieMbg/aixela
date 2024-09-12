@@ -27,6 +27,7 @@ const AuthenticationWrapper = ({
   redirectTitle,
   redirectBtnLabel,
   redirectLink,
+  showOauth = true,
 }: {
   title: string;
   subtitle: string;
@@ -34,6 +35,7 @@ const AuthenticationWrapper = ({
   redirectTitle: string;
   redirectBtnLabel: string;
   redirectLink: string;
+  showOauth?: boolean;
 }) => {
   const handleXSignIn = async () => {
     return;
@@ -62,25 +64,29 @@ const AuthenticationWrapper = ({
       </div>
 
       {/* //? OAUTH BTN */}
-      <div className="grid grid-cols-2 gap-3 w-full">
-        <OauthBtn
-          action={handleXSignIn}
-          icon={<XIcon className="size-6" />}
-          label="X"
-        />
-        <OauthBtn
-          action={handleGoogleSignIn}
-          icon={<GoogleIcon className="size-6" />}
-          label="Google"
-        />
-      </div>
+      {showOauth && (
+        <div className="grid grid-cols-2 gap-3 w-full">
+          <OauthBtn
+            action={handleXSignIn}
+            icon={<XIcon className="size-6" />}
+            label="X"
+          />
+          <OauthBtn
+            action={handleGoogleSignIn}
+            icon={<GoogleIcon className="size-6" />}
+            label="Google"
+          />
+        </div>
+      )}
 
       {/* //? SEPARATOR */}
-      <div className="flex w-full items-center gap-5">
-        <Separator />
-        <div className="text-xs font-medium text-app-text-gray">OR</div>
-        <Separator />
-      </div>
+      {showOauth && (
+        <div className="flex w-full items-center gap-5">
+          <Separator />
+          <div className="text-xs font-medium text-app-text-gray">OR</div>
+          <Separator />
+        </div>
+      )}
 
       {children}
 
