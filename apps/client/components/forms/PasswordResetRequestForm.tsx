@@ -20,12 +20,14 @@ import { useState } from 'react';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 import PasswordInput from '../inputs/PasswordInput';
 import { requestPasswordResetAction } from '@/utils/actions/authentication/requestPasswordResetAction';
+import { useRouter } from 'next/navigation';
 
 /**
  * Sign in form
  * @returns the sign in form
  */
 const PasswordResetRequestForm = () => {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   const form = useForm<z.infer<typeof passwordRequestSchema>>({
@@ -40,6 +42,7 @@ const PasswordResetRequestForm = () => {
     const error = await requestPasswordResetAction(values.email);
 
     setIsLoading(false);
+    router.push('/forgot-password?sent=true');
   }
 
   return (
@@ -64,7 +67,7 @@ const PasswordResetRequestForm = () => {
           )}
         />
 
-        <SubmitPrimary isLoading={isLoading}>Sign in</SubmitPrimary>
+        <SubmitPrimary isLoading={isLoading}>Continue</SubmitPrimary>
       </form>
     </Form>
   );

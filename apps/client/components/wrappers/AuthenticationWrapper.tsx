@@ -28,14 +28,16 @@ const AuthenticationWrapper = ({
   redirectBtnLabel,
   redirectLink,
   showOauth = true,
+  showRedirect = true,
 }: {
   title: string;
   subtitle: string;
   children: ReactNode;
-  redirectTitle: string;
-  redirectBtnLabel: string;
-  redirectLink: string;
+  redirectTitle?: string;
+  redirectBtnLabel?: string;
+  redirectLink?: string;
   showOauth?: boolean;
+  showRedirect?: boolean;
 }) => {
   const handleXSignIn = async () => {
     return;
@@ -91,12 +93,14 @@ const AuthenticationWrapper = ({
       {children}
 
       {/* //? REDIRECTION BTN */}
-      <div className="flex flex-col items-center gap-2 w-full text-sm text-app-gray-300">
-        <div className="font-medium">{redirectTitle}</div>
-        <Link href={redirectLink} className="w-max underline font-semibold">
-          {redirectBtnLabel}
-        </Link>
-      </div>
+      {showRedirect && (
+        <div className="flex flex-col items-center gap-2 w-full text-sm text-app-gray-300">
+          <div className="font-medium">{redirectTitle}</div>
+          <Link href={redirectLink!} className="w-max underline font-semibold">
+            {redirectBtnLabel}
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

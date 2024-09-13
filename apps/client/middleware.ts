@@ -22,5 +22,26 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  // check for password reset request and set the token in a cookie
+  if (request.nextUrl.pathname.startsWith('/password/reset')) {
+    const resetToken = request.nextUrl.searchParams.get('token');
+
+    if (!resetToken) {
+      return NextResponse.redirect(new URL('/forgot-password', request.url));
+    }
+
+    const response = NextResponse.redirect(
+      new URL('/forgot-password/reset', request.url)
+    ); // Redirect to home page
+
+    // Set the token in a cookie
+    response.cookies.set('resetToken', resetToken, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+    });
+
+    return response;
+  }
+
   return NextResponse.next(); // Continue with the request if no token
 }

@@ -1,17 +1,27 @@
 import PasswordResetRequestForm from '@/components/forms/PasswordResetRequestForm';
 import AuthenticationWrapper from '@/components/wrappers/AuthenticationWrapper';
 
-const ForgetPassword = () => {
+const ForgetPassword = ({
+  searchParams,
+}: {
+  searchParams: { sent: boolean };
+}) => {
+  const isSent = searchParams.sent;
+
   return (
     <AuthenticationWrapper
-      title="Forgot your password?"
-      subtitle="No worries! Enter your email to reset your password and get back to supporting the causes you love."
+      title={!isSent ? 'Forgot your password?' : 'Check your inbox!'}
+      subtitle={
+        !isSent
+          ? 'No worries! Enter your email to reset your password and get back to supporting the causes you love.'
+          : "We've sent a password reset link to your email. Check your inbox and follow the steps."
+      }
       redirectTitle="Remember your password?"
       redirectBtnLabel="Sign in"
       redirectLink="/sign-in"
       showOauth={false}
     >
-      <PasswordResetRequestForm />
+      {!isSent && <PasswordResetRequestForm />}
     </AuthenticationWrapper>
   );
 };
