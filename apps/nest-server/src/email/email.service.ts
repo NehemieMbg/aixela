@@ -4,6 +4,7 @@ import { render } from '@react-email/render';
 import SignupTemplate from '../../emails/signup-template';
 import * as process from 'node:process';
 import EmailConfirmationTemplate from '../../emails/email-confirmation-template';
+import ResetPasswordTemplate from '../../emails/reset-password-template';
 
 export interface ResendError {
   statusCode: number;
@@ -77,6 +78,22 @@ export class EmailService {
       from: `${process.env.EMAIL_NAME} <${process.env.RESEND_EMAIL}>`,
       to,
       subject: 'Verify your account',
+      html: emailHtml, // Pass the rendered HTML here
+    });
+
+    if (error as ResendError) {
+      throw new InternalServerErrorException(error.message);
+    }
+  }
+
+  async resetPasswordEmail(to: string, resetUrl: string): Promise<void> {
+    // Render the ResetPasswordTemplate React component to an HTML string
+    const emailHtml: string = await render(ResetPasswordTemplate({ resetUrl }));
+
+    const { error } = await this.resend.emails.send({
+      from: `${process.env.EMAIL_NAME} <${process.env.RESEND_EMAIL}>`,
+      to,
+      subject: 'Reset your password',
       html: emailHtml, // Pass the rendered HTML here
     });
 

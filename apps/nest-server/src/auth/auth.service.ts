@@ -197,14 +197,9 @@ export class AuthService {
     user.resetPasswordExpires = new Date(Date.now() + 3600000); // 1 hour from now
     await this.userService.saveUser(user);
 
-    const resetUrl: string = `${process.env.FRONTEND_URL}/reset-password?token=${resetToken}`;
+    const resetUrl: string = `${process.env.FRONTEND_URL}/password/reset?token=${resetToken}`;
 
-    await this.emailService.sendEmail(
-      process.env.RESEND_EMAIL,
-      email,
-      'Reset Password',
-      'Click here to reset your password: ' + resetUrl,
-    );
+    await this.emailService.resetPasswordEmail(email, resetUrl);
 
     return { message: 'Password reset request has been accepted' };
   }
@@ -247,6 +242,10 @@ export class AuthService {
     await this.userService.saveUser(user);
 
     return { message: 'Password successfully updated' };
+  }
+
+  async getCurrentUser(username: string) {
+    return await this.userService.findOne(username);
   }
 
   /**

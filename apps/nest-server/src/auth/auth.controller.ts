@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Put,
   Query,
   Request,
   Response,
@@ -10,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from '../users/dto/create-user.dto';
 import { AuthService } from './auth.service';
-import { Serialize } from '../users/interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors/serialize.interceptor';
 import { AuthDto } from './dto/auth.dto';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { JwtAuthGuard } from './guards/jwt-auth.guard';
@@ -19,6 +20,7 @@ import { RequestPasswordResetDto } from './dto/request-password-reset.dto';
 import { ResetPasswordDto } from './dto/reset-password.dto';
 import * as process from 'node:process';
 import { ConfirmEmailDto } from './dto/confirm-email.dto';
+import { CurrentUserDto } from './dto/current-user.dto';
 
 // import { Response } from 'express'; // Ensure this import is present
 
@@ -83,8 +85,9 @@ export class AuthController {
    */
   @Get('/me')
   @UseGuards(JwtAuthGuard)
+  @Serialize(CurrentUserDto)
   getProfile(@Request() request) {
-    return request.user;
+    return this.authService.getCurrentUser(request.user.username);
   }
 
   /**
@@ -127,7 +130,7 @@ export class AuthController {
    * @param body - The request body containing the new password and reset token.
    * @returns A promise that resolves to a message indicating the result of the password reset.
    */
-  @Post('/reset-password')
+  @Put('/reset-password')
   @UseGuards(JwtAuthGuard)
   async resetPassword(
     @Request() request,
