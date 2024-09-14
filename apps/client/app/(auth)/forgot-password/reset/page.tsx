@@ -1,5 +1,4 @@
 import SubmitPrimary from '@/components/buttons/SubmitPrimary';
-import PasswordResetRequestForm from '@/components/forms/PasswordResetRequestForm';
 import ResetPasswordForm from '@/components/forms/ResetPasswordForm';
 import AuthenticationWrapper from '@/components/wrappers/AuthenticationWrapper';
 import Link from 'next/link';

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils';
 import signOut from '@/utils/actions/authentication/signOutAction';
 import Link from 'next/link';
 import { Button } from '../ui/button';
+import { useRouter } from 'next/navigation';
 
 /**
  * Menu Nav Links component

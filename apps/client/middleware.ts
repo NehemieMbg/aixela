@@ -1,7 +1,19 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { getCurrentUserAction } from './utils/actions/authentication/getUserAction';
 
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
+  // Check if the user can access the route
+  if (request.nextUrl.pathname.startsWith('/account')) {
+    const user = await getCurrentUserAction();
+
+    if (!user) {
+      return NextResponse.redirect(new URL('/sign-in', request.url));
+    }
+
+    return NextResponse.next();
+  }
+
   // Check if the request is an OAuth callback
   if (request.nextUrl.pathname.startsWith('/auth/callback')) {
     const token = request.nextUrl.searchParams.get('token');

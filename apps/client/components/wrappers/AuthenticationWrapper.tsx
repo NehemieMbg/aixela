@@ -4,11 +4,10 @@ import OauthBtn from '@/components/buttons/OauthBtn';
 import GoogleIcon from '@/components/icons/GoogleIcon';
 import XIcon from '@/components/icons/XIcon';
 import Separator from '@/components/reusables/Separator';
+import { googleSignInAction } from '@/utils/actions/authentication/signInAction';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import Aixela from '../logo/Aixela';
-import server from '@/utils/server/server';
-import { googleSignInAction } from '@/utils/actions/authentication/signInAction';
 
 /**
  * This is the authentication wrapper component used for both the sign-in and sign-up pages.
