@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { User } from './users/user.entity';
 import { EmailModule } from './email/email.module';
+import { UploadsModule } from './uploads/uploads.module';
 import * as process from 'node:process';
 
 @Module({
@@ -12,8 +13,9 @@ import * as process from 'node:process';
     UsersModule,
     AuthModule,
     EmailModule,
+    UploadsModule,
     ConfigModule.forRoot({
-      isGlobal: true,
+      isGlobal: true, // allows the configuration to be available globally
     }),
     TypeOrmModule.forRoot({
       type: 'postgres', // Adjust to your database type
