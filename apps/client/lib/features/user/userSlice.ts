@@ -40,10 +40,20 @@ const userSlice = createSlice({
      * @returns the updated
      */
     updateUser: (state, action) => {
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload, avatarUrl: state.avatarUrl };
+    },
+
+    /**
+     * Update the user avatar
+     * @param state - the current state
+     * @param action - the action to be performed
+     * @returns the updated
+     */
+    setAvatar: (state, action) => {
+      state.avatarUrl = action.payload;
     },
   },
 });
 
-export const { setUser, updateUser } = userSlice.actions;
+export const { setUser, updateUser, setAvatar } = userSlice.actions;
 export default userSlice.reducer;

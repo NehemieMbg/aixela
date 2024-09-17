@@ -9,7 +9,7 @@ const AccountPage = () => {
       <div className="space-y-10 max-w-[664px]">
         <h3 className="text-lg font-medium">Public Information</h3>
 
-        <AvatarForm user={user} />
+        <AvatarForm />
 
         <AccountForm />
       </div>

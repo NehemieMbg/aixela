@@ -2,24 +2,26 @@
 
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 
-import { useAppDispatch } from '@/lib/hooks';
-import { User } from '@/utils/types/temp';
-import { ChangeEvent, useState } from 'react';
-import { Skeleton } from '../ui/skeleton';
+import { setAvatar } from '@/lib/features/user/userSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { cn } from '@/lib/utils';
+import {
+  deleteAvatarAction,
+  updateAvatarAction,
+} from '@/utils/actions/users/updateAvatarAction';
+import { UserRoundPen } from 'lucide-react';
+import { ChangeEvent } from 'react';
 import { Input } from '../ui/input';
 import { Label } from '../ui/label';
-import { UserRoundPen } from 'lucide-react';
-import { cn } from '@/lib/utils';
+import { Skeleton } from '../ui/skeleton';
 
 /**
  * AvatarForm component
- * @param user - The user object
  * @returns The AvatarForm component
  */
-const AvatarForm = ({ user }: { user: User }) => {
+const AvatarForm = () => {
   const dispatch = useAppDispatch();
-
-  const [isDeleting, setIsDeleting] = useState(false);
+  const user = useAppSelector((state) => state.user);
 
   const handleAvatarUpdate = async (event: ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
@@ -30,6 +32,14 @@ const AvatarForm = ({ user }: { user: User }) => {
 
     const formData = new FormData();
     formData.append('avatar', file);
+
+    const avatarUrl = await updateAvatarAction(formData);
+    dispatch(setAvatar(avatarUrl));
+  };
+
+  const handleAvatarDelete = async () => {
+    await deleteAvatarAction();
+    dispatch(setAvatar(null));
   };
 
   return (
@@ -61,9 +71,14 @@ const AvatarForm = ({ user }: { user: User }) => {
         />
       </div>
 
-      <button className="text-app-gray-900 text-sm font-medium py-2.5 px-3.5">
-        Delete
-      </button>
+      {user.avatarUrl && (
+        <button
+          onClick={handleAvatarDelete}
+          className="text-app-gray-900 text-sm font-medium py-2.5 px-3.5"
+        >
+          Delete
+        </button>
+      )}
     </div>
   );
 };

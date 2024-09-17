@@ -38,8 +38,8 @@ const UserMenuInfo = ({ closeMenu }: { closeMenu: () => void }) => {
             onClick={closeMenu}
             className="flex items-center gap-3 w-max"
           >
-            <Avatar className="size-12">
-              <AvatarImage src={user?.avatarUrl} />
+            <Avatar className="size-12 bg-app-gray-100">
+              <AvatarImage src={user.avatarUrl && user?.avatarUrl} />
               <AvatarFallback>
                 <Skeleton />
               </AvatarFallback>

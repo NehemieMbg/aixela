@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useToast } from '@/hooks/use-toast';
-import { setUser } from '@/lib/features/user/userSlice';
+import { setUser, updateUser } from '@/lib/features/user/userSlice';
 import { useAppDispatch, useAppSelector } from '@/lib/hooks';
 import { updateInfoAction } from '@/utils/actions/users/updateInfoAction';
 import { accountSchema } from '@/utils/schemas/AccountSchema';
@@ -28,7 +28,6 @@ const AccountForm = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  // 1. Define your form.
   const form = useForm<z.infer<typeof accountSchema>>({
     resolver: zodResolver(accountSchema),
     defaultValues: {
@@ -38,13 +37,12 @@ const AccountForm = () => {
     },
   });
 
-  // 2. Define a submit handler.
   async function onSubmit(values: z.infer<typeof accountSchema>) {
     setIsLoading(true);
     const userInfo = await updateInfoAction(values);
 
     if (userInfo) {
-      dispatch(setUser(userInfo));
+      dispatch(updateUser(userInfo));
       toast({
         description: 'Your message has been sent.',
       });
