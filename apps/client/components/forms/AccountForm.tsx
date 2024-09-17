@@ -13,12 +13,20 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { useToast } from '@/hooks/use-toast';
+import { setUser } from '@/lib/features/user/userSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { updateInfoAction } from '@/utils/actions/users/updateInfoAction';
 import { accountSchema } from '@/utils/schemas/AccountSchema';
+import { useState } from 'react';
 import SubmitPrimary from '../buttons/SubmitPrimary';
-import { useAppSelector } from '@/lib/hooks';
 
 const AccountForm = () => {
+  const { toast } = useToast();
+  const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.user);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof accountSchema>>({
@@ -31,10 +39,23 @@ const AccountForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof accountSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof accountSchema>) {
+    setIsLoading(true);
+    const userInfo = await updateInfoAction(values);
+
+    if (userInfo) {
+      dispatch(setUser(userInfo));
+      toast({
+        description: 'Your message has been sent.',
+      });
+    } else {
+      toast({
+        title: 'Uh oh! Something went wrong.',
+        description: 'There was a problem with your request.',
+      });
+    }
+
+    setIsLoading(false);
   }
 
   return (
@@ -87,7 +108,10 @@ const AccountForm = () => {
           )}
         />
 
-        <SubmitPrimary className="font-normal mt-10 w-max rounded-md">
+        <SubmitPrimary
+          isLoading={isLoading}
+          className="font-normal mt-10 w-max rounded-md"
+        >
           Save profile
         </SubmitPrimary>
       </form>

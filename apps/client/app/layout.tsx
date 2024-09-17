@@ -7,6 +7,7 @@ import StoreProvider from '@/providers/StoreProvider';
 import { getCurrentUserAction } from '@/utils/actions/authentication/getUserAction';
 import { User } from '@/utils/types/temp';
 import ConfirmAccountCard from '@/components/cards/ConfirmAccountCard';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -36,6 +37,7 @@ export default async function RootLayout({
 
           <StoreProvider user={user as User | undefined}>
             {children}
+            <Toaster />
           </StoreProvider>
         </main>
       </body>

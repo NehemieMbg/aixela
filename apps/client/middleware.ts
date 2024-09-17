@@ -4,15 +4,15 @@ import { getCurrentUserAction } from './utils/actions/authentication/getUserActi
 
 export async function middleware(request: NextRequest) {
   // Check if the user can access the route
-  if (request.nextUrl.pathname.startsWith('/account')) {
-    const user = await getCurrentUserAction();
+  // if (request.nextUrl.pathname.startsWith('/account')) {
+  //   const user = await getCurrentUserAction();
 
-    if (!user) {
-      return NextResponse.redirect(new URL('/sign-in', request.url));
-    }
+  //   if (!user) {
+  //     return NextResponse.redirect(new URL('/sign-in', request.url));
+  //   }
 
-    return NextResponse.next();
-  }
+  //   return NextResponse.next();
+  // }
 
   // Check if the request is an OAuth callback
   if (request.nextUrl.pathname.startsWith('/auth/callback')) {
