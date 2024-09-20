@@ -32,7 +32,7 @@ const Subscribers = ({
       closeNotification={closeSubscription}
     >
       <div>
-        {subscribers.map((subscriber) => {
+        {subscribers!.map((subscriber) => {
           const { avatarUrl, fullName, username } = subscriber.user;
           const isSubscribed = !!subscribedTo.find(
             (sub) => sub.user.username === username
