@@ -8,8 +8,14 @@ export class User {
   @Column()
   fullName: string;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
+
+  @Column({ unique: true })
+  profileName: string;
+
+  @Column({ nullable: true })
+  newEmail: string;
 
   @Column({ nullable: true })
   avatarUrl: string;
@@ -25,6 +31,12 @@ export class User {
 
   @Column({ nullable: true }) // for oauth
   password: string;
+
+  @Column({ nullable: true })
+  emailUpdateCode?: string;
+
+  @Column({ nullable: true })
+  emailUpdateCodeExpires?: Date;
 
   @Column({ nullable: true })
   resetPasswordToken?: string;

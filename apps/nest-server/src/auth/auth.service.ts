@@ -255,7 +255,7 @@ export class AuthService {
    * @param expireIn - Optional expiration time for the token.
    * @returns A promise that resolves to the generated token.
    */
-  private async generateToken(
+  async generateToken(
     id: number,
     username: string,
     expireIn?: string,

@@ -2,19 +2,14 @@ import { Expose, Transform } from 'class-transformer';
 import { User } from '../../users/user.entity';
 
 /**
- * Data Transfer Object for the current user.
+ * Data Transfer Object for the user profile.
  */
-export class CurrentUserDto {
+export class ProfileDto {
   @Expose()
   id: number;
 
   @Expose()
   fullName: string;
-
-  // Transform the username to email
-  @Expose()
-  @Transform(({ obj }: { obj: User }) => obj.username)
-  email: string;
 
   @Expose()
   @Transform(({ obj }: { obj: User }) => obj.profileName)
@@ -28,7 +23,4 @@ export class CurrentUserDto {
 
   @Expose()
   location: string;
-
-  @Expose()
-  isConfirmed: boolean;
 }

@@ -1,4 +1,8 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -9,8 +13,11 @@ import { UpdateUserInfoDto } from './dto/update-user-info.dto';
 import { UploadsService } from '../uploads/uploads.service';
 import { Buffer } from 'buffer';
 import { ManagedUpload } from 'aws-sdk/lib/s3/managed_upload';
+import * as sharp from 'sharp';
+import { UpdateUserEmailDto } from './dto/update-user-email.dto';
+import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
+import { EmailService } from '../email/email.service';
 import SendData = ManagedUpload.SendData;
-import * as sharp from 'sharp'; // Correct ES module import
 
 @Injectable()
 export class UsersService {
@@ -19,6 +26,7 @@ export class UsersService {
     private readonly userRepository: Repository<User>,
     private readonly passwordService: PasswordService,
     private readonly uploadsService: UploadsService,
+    private readonly emailService: EmailService,
   ) {}
 
   /**
@@ -33,13 +41,15 @@ export class UsersService {
       return null;
     }
 
-    const user: User = await this.userRepository.create(
+    const user: User = this.userRepository.create(
       new User(
         body.fullName,
         body.username,
         await this.passwordService.encode(body.password),
       ),
     );
+
+    user.profileName = body.fullName.replace(/\s/g, '').toLowerCase();
     await this.userRepository.save(user);
 
     return user;
@@ -57,11 +67,13 @@ export class UsersService {
       return null;
     }
 
-    const user: User = await this.userRepository.create(
-      new User(body.firstName, body.lastName, body.email),
+    const fullName: string = `${body.firstName} ${body.lastName}`;
+    const user: User = this.userRepository.create(
+      new User(fullName, body.email),
     );
-    user.isConfirmed = true;
 
+    user.isConfirmed = true;
+    user.profileName = fullName.replace(/\s/g, '').toLowerCase();
     await this.userRepository.save(user);
 
     return user;
@@ -156,6 +168,13 @@ export class UsersService {
     return this.userRepository.save(user);
   }
 
+  /**
+   * Updates the user's information.
+   * @param username - The username of the user to update.
+   * @param body - The new user information.
+   * @returns The updated user.
+   * @throws NotFoundException if the user is not found.
+   */
   async updateInfo(username: string, body: UpdateUserInfoDto) {
     const user: User = await this.findOne(username);
 
@@ -167,5 +186,124 @@ export class UsersService {
 
     await this.userRepository.save(user);
     return user;
+  }
+
+  /**
+   * Updates the user's email address.
+   * @param username - The username of the user to update.
+   * @param body - The new email information.
+   * @returns A message indicating the new email is set and needs confirmation.
+   * @throws NotFoundException if the user is not found.
+   * @throws BadRequestException if the password is invalid or the email is already in use.
+   */
+  async updateEmail(username: string, body: UpdateUserEmailDto) {
+    const user: User | null = await this.findOne(username);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    if (!(await this.passwordService.compare(body.password, user.password))) {
+      throw new BadRequestException('Invalid password');
+    }
+
+    if (await this.findOne(body.email)) {
+      throw new BadRequestException('Email already in use');
+    }
+
+    // generate a random code & encrypt it
+    const code: number = this.generateRandomCode();
+
+    user.newEmail = body.email;
+    user.emailUpdateCode = await this.passwordService.encode(String(code));
+    user.emailUpdateCodeExpires = new Date(Date.now() + 1000 * 60 * 15); // 15 minutes
+    await this.userRepository.save(user);
+
+    // send confirmation email to user.newEmail
+    await this.emailService.updateEmailConfirmationEmail(
+      body.email, // send to the new email
+      user.fullName,
+      String(code),
+    );
+
+    return 'New email set. Please confirm the new email address.';
+  }
+
+  /**
+   * Confirms the user's new email address using a confirmation code.
+   * @param username - The username of the user to confirm.
+   * @param code - The confirmation code.
+   * @returns A message indicating the email was updated successfully.
+   * @throws NotFoundException if the user is not found.
+   * @throws BadRequestException if the code is expired or invalid.
+   */
+  async confirmEmail(username: string, code: string) {
+    const user: User | null = await this.findOne(username);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    // check if code timed out
+    if (
+      user.emailUpdateCodeExpires &&
+      user.emailUpdateCodeExpires < new Date()
+    ) {
+      throw new BadRequestException('Code expired');
+    }
+
+    // compare the code
+    if (!(await this.passwordService.compare(code, user.emailUpdateCode))) {
+      throw new BadRequestException('Invalid code');
+    }
+
+    user.username = user.newEmail;
+    user.newEmail = null;
+    user.emailUpdateCode = null;
+    user.emailUpdateCodeExpires = null;
+    await this.userRepository.save(user);
+
+    return 'Email updated successfully';
+  }
+
+  /**
+   * Updates the user's password.
+   * @param username - The username of the user to update.
+   * @param body - The new password information.
+   * @returns A message indicating the password was updated successfully.
+   * @throws NotFoundException if the user is not found.
+   * @throws BadRequestException if the current password is invalid.
+   */
+  async updatePassword(username: string, body: UpdateUserPasswordDto) {
+    const user: User | null = await this.findOne(username);
+
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+
+    if (!(await this.passwordService.compare(body.password, user.password))) {
+      throw new BadRequestException('Invalid password');
+    }
+
+    user.password = await this.passwordService.encode(body.newPassword);
+    await this.userRepository.save(user);
+
+    return 'Password updated successfully';
+  }
+
+  /**
+   * Gets the user's profile.
+   * @param username - The username of the user to get the profile for.
+   * @returns The user profile.
+   */
+  getProfile(username: string) {
+    return this.userRepository.findOne({
+      where: { profileName: username },
+    });
+  }
+
+  private generateRandomCode(): number {
+    // generate 5 length random number
+    return Math.floor(100000 + Math.random() * 900000);
   }
 }

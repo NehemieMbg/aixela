@@ -5,11 +5,14 @@ import {
   FileTypeValidator,
   MaxFileSizeValidator,
   ParseFilePipe,
-  Put,
+  Post,
   Request,
+  Put,
   UploadedFile,
   UseGuards,
   UseInterceptors,
+  Get,
+  Param,
 } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { UpdateUserInfoDto } from './dto/update-user-info.dto';
@@ -17,10 +20,20 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { Serialize } from '../interceptors/serialize.interceptor';
 import { UserDto } from './dto/user.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { UpdateUserEmailDto } from './dto/update-user-email.dto';
+import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
+import { EmailConfirmationCodeDto } from './dto/email-confirmation-code.dto';
+import { ProfileDto } from './dto/profile.dto';
 
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
+
+  @Get('/:username')
+  @Serialize(ProfileDto)
+  async getProfile(@Param('username') username: string) {
+    return this.usersService.getProfile(username);
+  }
 
   @Put('/me/update-info')
   @UseGuards(JwtAuthGuard)
@@ -51,5 +64,29 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   async deleteAvatar(@Request() request) {
     return this.usersService.deleteAvatar(request.user.username);
+  }
+
+  @Put('/me/email')
+  @UseGuards(JwtAuthGuard)
+  async updateEmail(@Request() request, @Body() body: UpdateUserEmailDto) {
+    return this.usersService.updateEmail(request.user.username, body);
+  }
+
+  @Post('/me/email/confirm')
+  @UseGuards(JwtAuthGuard)
+  async confirmEmail(
+    @Request() request,
+    @Body() body: EmailConfirmationCodeDto,
+  ) {
+    return this.usersService.confirmEmail(request.user.username, body.code);
+  }
+
+  @Put('/me/password')
+  @UseGuards(JwtAuthGuard)
+  async updatePassword(
+    @Request() request,
+    @Body() body: UpdateUserPasswordDto,
+  ) {
+    return this.usersService.updatePassword(request.user.username, body);
   }
 }
