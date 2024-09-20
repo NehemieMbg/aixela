@@ -44,7 +44,7 @@ const AccountForm = () => {
     if (userInfo) {
       dispatch(updateUser(userInfo));
       toast({
-        description: 'Your message has been sent.',
+        description: 'Your profile has been updated.',
       });
     } else {
       toast({

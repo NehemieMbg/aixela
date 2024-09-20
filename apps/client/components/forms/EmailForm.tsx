@@ -17,6 +17,9 @@ import { emailSchema } from '@/utils/schemas/AccountSchema';
 import SubmitPrimary from '../buttons/SubmitPrimary';
 import { useAppSelector } from '@/lib/hooks';
 import PasswordInput from '../inputs/PasswordInput';
+import { updateEmailAction } from '@/utils/actions/users/updateEmailAction';
+import { useState } from 'react';
+import ConfirmEmailForm from './ConfirmEmailForm';
 
 /**
  * Email form
@@ -24,63 +27,107 @@ import PasswordInput from '../inputs/PasswordInput';
  */
 const EmailForm = () => {
   const user = useAppSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
+  const [isOtpActive, setIsOtpActive] = useState(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof emailSchema>>({
     resolver: zodResolver(emailSchema),
     defaultValues: {
-      email: user.email,
+      email: '',
       password: '',
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof emailSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof emailSchema>) {
+    setIsLoading(true);
+    const response = await updateEmailAction(values);
+
+    if (response?.status === 'error') {
+      form.setError('email', {
+        type: 'manual',
+        message: response.message,
+      });
+    }
+
+    // Clear the password field.
+    form.setValue('password', '');
+    setIsLoading(false);
+    setIsOtpActive(true);
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
-        <div className="space-y-5">
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-app-gray-300">Email (*)</FormLabel>
-                <FormControl>
-                  <Input {...field} type="text" />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+    <>
+      <ConfirmEmailForm
+        isActive={isOtpActive}
+        closeOtp={() => setIsOtpActive(false)}
+      />
 
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel className="text-app-gray-300">
-                  Password (*)
-                </FormLabel>
-                <FormControl>
-                  <PasswordInput field={field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+      <div className="w-full space-y-5">
+        <div className="w-full flex justify-between items-start">
+          <div>
+            <h3 className="text-sm">Current email address</h3>
+            <p className="font-medium">{user.email as string}</p>
+          </div>
+
+          <button
+            onClick={() => setIsEditing(!isEditing)}
+            className="text-app-blue-300 font-medium text-sm"
+          >
+            {isEditing ? 'Cancel' : 'Edit'}
+          </button>
         </div>
 
-        <SubmitPrimary className="font-normal mt-10 w-max rounded-md">
-          Update Email
-        </SubmitPrimary>
-      </form>
-    </Form>
+        {isEditing && (
+          <Form {...form}>
+            <form onSubmit={form.handleSubmit(onSubmit)} className="w-full">
+              <div className="space-y-5">
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-app-gray-300">
+                        New Email Address(*)
+                      </FormLabel>
+                      <FormControl>
+                        <Input {...field} type="text" />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-app-gray-300">
+                        Password (*)
+                      </FormLabel>
+                      <FormControl>
+                        <PasswordInput field={field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
+              <SubmitPrimary
+                isLoading={isLoading}
+                className="font-normal mt-10 w-max rounded-md"
+              >
+                Update Email
+              </SubmitPrimary>
+            </form>
+          </Form>
+        )}
+      </div>
+    </>
   );
 };
 export default EmailForm;
