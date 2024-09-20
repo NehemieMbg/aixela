@@ -6,8 +6,15 @@ import { cn } from '@/lib/utils';
 import { initiateConfirmRequestAction } from '@/utils/actions/authentication/initiateConfirmRequestAction';
 import { ShieldCheck } from 'lucide-react';
 import SubmitPrimary from '../buttons/SubmitPrimary';
+import { useRef, useState } from 'react';
+import useClickOutside from '@/hooks/useClickOutside';
 
 const ConfirmAccountCard = ({ isConfirmed }: { isConfirmed: boolean }) => {
+  const [isActive, setIsActive] = useState(!isConfirmed);
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useClickOutside(modalRef, () => setIsActive(false));
+
   if (isConfirmed) {
     return null;
   }
@@ -18,14 +25,20 @@ const ConfirmAccountCard = ({ isConfirmed }: { isConfirmed: boolean }) => {
 
   return (
     <>
-      <Backdrop isActive={true} zIndex={999} />
+      <Backdrop isActive={isActive} zIndex={999} />
 
       <div
         className={cn(
-          'fixed top-0 w-screen h-screen z-[1000] flex items-center justify-center p-side'
+          'fixed top-0 w-screen h-screen z-[1000] flex items-center justify-center p-side',
+          {
+            hidden: !isActive,
+          }
         )}
       >
-        <div className="max-w-[460px] w-full space-y-8 p-5 bg-white rounded-md">
+        <div
+          ref={modalRef}
+          className="max-w-[460px] w-full space-y-8 p-5 bg-white rounded-md"
+        >
           <div className="flex justify-between items-start">
             <div
               className={cn(

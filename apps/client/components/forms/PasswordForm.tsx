@@ -12,18 +12,19 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { Input } from '@/components/ui/input';
 import { passwordSchema } from '@/utils/schemas/AccountSchema';
 import SubmitPrimary from '../buttons/SubmitPrimary';
-import { useAppSelector } from '@/lib/hooks';
 import PasswordInput from '../inputs/PasswordInput';
+import { useState } from 'react';
+import { updatePasswordAction } from '@/utils/actions/users/updatePasswordAction';
+import { toast } from '@/hooks/use-toast';
 
 /**
- * Email form
- * @returns the email form
+ * Password form
+ * @returns the password form
  */
 const PasswordForm = () => {
-  const user = useAppSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof passwordSchema>>({
@@ -36,10 +37,33 @@ const PasswordForm = () => {
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof passwordSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof passwordSchema>) {
+    setIsLoading(true);
+    const response = await updatePasswordAction(values);
+
+    if (response?.status === 'error') {
+      form.setError('password', {
+        type: 'manual',
+        message: response.message,
+      });
+
+      form.setValue('password', '');
+      form.setValue('newPassword', '');
+      form.setValue('confirmPassword', '');
+
+      toast({
+        title: 'Error',
+        description: response.message,
+      });
+    } else {
+      form.reset();
+      toast({
+        title: 'Password Updated',
+        description: 'Your password has been updated successfully.',
+      });
+    }
+
+    setIsLoading(false);
   }
 
   return (
@@ -95,7 +119,10 @@ const PasswordForm = () => {
           />
         </div>
 
-        <SubmitPrimary className="font-normal mt-10 w-max rounded-md">
+        <SubmitPrimary
+          isLoading={isLoading}
+          className="font-normal mt-10 w-max rounded-md"
+        >
           Update Password
         </SubmitPrimary>
       </form>
