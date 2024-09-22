@@ -110,6 +110,7 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
       {
@@ -132,6 +133,7 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
       {
@@ -154,6 +156,7 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
       {
@@ -176,6 +179,7 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
       {
@@ -198,6 +202,7 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
     ],
@@ -222,6 +227,7 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
       {
@@ -244,9 +250,11 @@ export const users: User[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
       },
     ],
+    isConfirmed: true,
   },
   {
     id: 2,
@@ -265,6 +273,7 @@ export const users: User[] = [
     },
     subscribers: [],
     subscribedTo: [],
+    isConfirmed: true,
   },
 
   {
@@ -284,6 +293,7 @@ export const users: User[] = [
     },
     subscribers: [],
     subscribedTo: [],
+    isConfirmed: true,
   },
 
   {
@@ -303,6 +313,7 @@ export const users: User[] = [
     },
     subscribers: [],
     subscribedTo: [],
+    isConfirmed: true,
   },
 
   {
@@ -322,6 +333,7 @@ export const users: User[] = [
     },
     subscribers: [],
     subscribedTo: [],
+    isConfirmed: true,
   },
 
   {
@@ -341,6 +353,7 @@ export const users: User[] = [
     },
     subscribers: [],
     subscribedTo: [],
+    isConfirmed: true,
   },
 ];
 
@@ -381,6 +394,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
     {
@@ -403,6 +417,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
     {
@@ -425,6 +440,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
     {
@@ -447,6 +463,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
     {
@@ -469,6 +486,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
   ],
@@ -493,6 +511,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
     {
@@ -515,6 +534,7 @@ export const user: User = {
         },
         subscribers: [],
         subscribedTo: [],
+        isConfirmed: true,
       },
     },
   ],
@@ -556,6 +576,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -578,6 +599,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-02-01'),
       },
@@ -601,6 +623,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-03-15'),
       },
@@ -623,6 +646,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-04-20'),
       },
@@ -645,6 +669,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-05-10'),
       },
@@ -667,6 +692,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-06-05'),
       },
@@ -689,6 +715,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-07-12'),
       },
@@ -711,6 +738,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-08-01'),
       },
@@ -733,6 +761,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-09-15'),
       },
@@ -755,6 +784,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-10-05'),
       },
@@ -777,6 +807,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-11-01'),
       },
@@ -799,6 +830,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-12-15'),
       },
@@ -840,6 +872,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -862,6 +895,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-04-10'),
       },
@@ -885,6 +919,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-05-05'),
       },
@@ -926,6 +961,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -948,6 +984,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-06-20'),
       },
@@ -971,6 +1008,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-07-01'),
       },
@@ -1012,6 +1050,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -1034,6 +1073,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-06-20'),
       },
@@ -1057,6 +1097,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-07-01'),
       },
@@ -1098,6 +1139,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -1120,6 +1162,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-05-01'),
       },
@@ -1143,6 +1186,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-06-15'),
       },
@@ -1184,6 +1228,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -1206,6 +1251,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-06-01'),
       },
@@ -1229,6 +1275,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-07-10'),
       },
@@ -1270,6 +1317,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -1292,6 +1340,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-08-01'),
       },
@@ -1315,6 +1364,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-09-15'),
       },
@@ -1356,6 +1406,7 @@ export const campaigns: Campaign[] = [
       },
       subscribers: [],
       subscribedTo: [],
+      isConfirmed: true,
     },
     contributors: [
       {
@@ -1378,6 +1429,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-06-20'),
       },
@@ -1401,6 +1453,7 @@ export const campaigns: Campaign[] = [
           },
           subscribers: [],
           subscribedTo: [],
+          isConfirmed: true,
         },
         date: new Date('2024-07-01'),
       },

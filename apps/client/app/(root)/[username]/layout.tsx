@@ -48,42 +48,47 @@ const emptyUser: User = {
   subscribedTo: [],
 };
 
+// Define the props type for UserLayout
+interface UserLayoutProps {
+  params: { username: string };
+  children: ReactNode;
+}
+
 /**
  * The UserLayout component
- * @param params - The params object
- * @param children - The children component
- * @returns The UserLayout component
+ * @param {UserLayoutProps} props - The props object containing params and children
+ * @returns {JSX.Element} - The UserLayout component
  */
 const UserLayout = async ({
   params,
   children,
-}: {
-  params: { username: string };
-  children: ReactNode;
-}) => {
-  let userProfile: User | null;
-  const user = await getUserAction(params.username);
+}: UserLayoutProps): Promise<JSX.Element> => {
+  try {
+    // Fetch user data
+    let profile = await getUserAction(params.username);
 
-  //! temp data
-  if (user) {
-    userProfile = { ...emptyUser, ...user };
-    console.log('user:', user);
-  } else {
-    userProfile =
-      users.find((user) => user.username === params.username) || (null as User);
-  }
+    //! This is a temporary added data: 'Down'
+    profile = profile
+      ? { ...emptyUser, ...profile }
+      : users.find((u) => u.username === params.username) || null;
+    //! This is a temporary added data: 'Up'
 
-  if (!userProfile) {
+    // If user is not found, call notFound()
+    if (!profile) {
+      notFound();
+    }
+
+    // Render the UserProfileNavigation and children components
+    return (
+      <div>
+        <UserProfileNavigation user={profile} />
+        {children}
+      </div>
+    );
+  } catch (error) {
+    console.error('Error fetching user data:', error);
     notFound();
   }
-
-  console.log('userProfile:', userProfile);
-
-  return (
-    <div>
-      <UserProfileNavigation user={userProfile} />
-      {children}
-    </div>
-  );
 };
+
 export default UserLayout;
