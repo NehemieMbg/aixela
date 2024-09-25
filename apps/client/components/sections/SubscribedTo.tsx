@@ -1,10 +1,12 @@
 'use client';
 
+import { getFollowingsAction } from '@/utils/actions/subscribe/getSubscriptionsAction';
+import { Profile } from '@/utils/types/user';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 import SubscribeBtn from '../buttons/SubscribeBtn';
 import UserSubscribeCard from '../cards/UserSubscribeCard';
 import NotificationWrapper from '../wrappers/NotificationWrapper';
-import { Subscriber } from '@/utils/types/temp';
 
 /**
  * The Subscribers component
@@ -17,14 +19,27 @@ import { Subscriber } from '@/utils/types/temp';
 const SubscribedTo = ({
   isOpen,
   closeSubscription,
-  subscribers,
-  subscribedTo,
+  username,
 }: {
   isOpen: boolean;
   closeSubscription: () => void;
-  subscribers: Subscriber[];
-  subscribedTo: Subscriber[];
+  username: string;
 }) => {
+  const [followings, setFollowings] = useState<Profile[]>([]);
+
+  // get the user's following
+  useEffect(() => {
+    const getFollowing = async () => {
+      const response = await getFollowingsAction(username);
+
+      if (response.status === 'success') {
+        setFollowings(response.data);
+      }
+    };
+
+    getFollowing();
+  }, [username]);
+
   return (
     <NotificationWrapper
       title="Subscribed"
@@ -32,11 +47,9 @@ const SubscribedTo = ({
       closeNotification={closeSubscription}
     >
       <div>
-        {subscribers.map((subscriber) => {
-          const { avatarUrl, fullName, username } = subscriber.user;
-          const isSubscribed = !!subscribedTo.find(
-            (sub) => sub.user.username === username
-          ); // Check if the user is subscribed to the subscriber
+        {followings.map((profile: Profile) => {
+          const { avatarUrl, fullName, username } = profile;
+          const isSubscribed = false; // if the user is subscribed to the subscriber
 
           return (
             <div
@@ -58,13 +71,14 @@ const SubscribedTo = ({
                     </Link>
 
                     <div className="text-sm whitespace-nowrap text-app-gray-highlight-3 font-medium">
-                      <span>@{subscriber.user.username}</span>
+                      <span>@{username}</span>
                     </div>
                   </div>
 
                   <SubscribeBtn
                     isSubscribe={isSubscribed}
                     isOwner={false}
+                    profileUsername={username}
                     btnType="medium"
                   />
                 </div>

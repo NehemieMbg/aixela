@@ -2,33 +2,34 @@
 
 import { useAppSelector } from '@/lib/hooks';
 import { cn } from '@/lib/utils';
-import { User } from '@/utils/types/temp';
+import { Profile } from '@/utils/types/user';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 /**
  * The ProfileNavigation component
- * @param user - The user object
+ * @param profile - The profile object
  * @returns The ProfileNavigation component
  */
-const ProfileNavigation = ({ user }: { user: User }) => {
+const ProfileNavigation = ({ profile }: { profile: Profile }) => {
   const pathname = usePathname();
   const pathArray = pathname.split('/');
   const pathArrayLength = pathArray.length;
   const lastPath = pathArray[pathArrayLength - 1];
 
-  const isCampaign = lastPath === user.username;
+  const isCampaign = lastPath === profile.username;
   const isContribution = lastPath === 'contribution';
   const isSaved = lastPath === 'saved';
 
   const connectedUser = useAppSelector((state) => state.user);
-  const isOwner = connectedUser.username === user.username;
+  const isOwner =
+    !!connectedUser && connectedUser.username === profile.username;
 
   return (
     <ul className="flex items-center gap-10 text-sm">
       <li>
         <Link
-          href={`/${user.username}`}
+          href={`/${profile.username}`}
           className={cn(
             'text-app-gray-300 font-medium hover:text-app-gray-950 transition-colors duration-200',
             {
@@ -42,7 +43,7 @@ const ProfileNavigation = ({ user }: { user: User }) => {
 
       <li>
         <Link
-          href={`/${user.username}/contribution`}
+          href={`/${profile.username}/contribution`}
           className={cn(
             'text-app-gray-300 font-medium hover:text-app-gray-950 transition-colors duration-200',
             {
@@ -60,7 +61,7 @@ const ProfileNavigation = ({ user }: { user: User }) => {
         })}
       >
         <Link
-          href={`/${user.username}/saved`}
+          href={`/${profile.username}/saved`}
           className={cn(
             'text-app-gray-300 font-medium hover:text-app-gray-950 transition-colors duration-200',
             {

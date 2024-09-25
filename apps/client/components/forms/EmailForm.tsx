@@ -50,6 +50,8 @@ const EmailForm = () => {
         type: 'manual',
         message: response.message,
       });
+    } else {
+      setIsEditing(false);
     }
 
     // Clear the password field.

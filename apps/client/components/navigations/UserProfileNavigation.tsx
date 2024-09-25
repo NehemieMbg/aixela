@@ -1,8 +1,10 @@
 'use client';
 
-import { campaigns } from '@/constants';
-import { User } from '@/utils/types/temp';
+import { useAppSelector } from '@/lib/hooks';
+import { cn } from '@/lib/utils';
+import { Profile } from '@/utils/types/user';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
 import { useState } from 'react';
 import SubscribeBtn from '../buttons/SubscribeBtn';
 import SubscribedTo from '../sections/SubscribedTo';
@@ -10,24 +12,25 @@ import Subscribers from '../sections/Subscribers';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
 import { Skeleton } from '../ui/skeleton';
 import ProfileNavigation from './ProfileNavigation';
-import { cn } from '@/lib/utils';
-import { useAppSelector } from '@/lib/hooks';
 
 /**
  * The UserProfileNavigation component
  * @param user - The user object
  * @returns
  */
-const UserProfileNavigation = ({ user }: { user: User }) => {
-  const connectedUser = useAppSelector((state) => state.user);
-  const isOwner = connectedUser?.username === user.username;
+const UserProfileNavigation = ({ profile }: { profile: Profile }) => {
+  const params = useParams() as { username: string };
+
+  const user = useAppSelector((state) => state.user);
+  const isOwner = user?.username === profile.username;
 
   const [isSubscribersOpen, setIsSubscribersOpen] = useState(false);
   const [isSubscribedToOpen, setIsSubscribedToOpen] = useState(false);
 
-  const userCampaigns = campaigns.filter(
-    (campaign) => campaign.creator.username === user.username
-  );
+  const userCampaigns = [];
+  // const userCampaigns = campaigns.filter(
+  //   (campaign) => campaign.creator.username === profile.username
+  // );
 
   return (
     <>
@@ -35,18 +38,18 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
         <div className="flex max-md:flex-col justify-between gap-10">
           <div className="flex max-md:flex-col md:items-center gap-7">
             <Avatar className="size-[80px] md:size-[120px]">
-              <AvatarImage src={user.avatarUrl} />
+              <AvatarImage src={profile.avatarUrl} />
               <AvatarFallback>
                 <Skeleton />
               </AvatarFallback>
             </Avatar>
 
             <div className="space-y-2">
-              <p className="text-2xl font-medium">{user.fullName}</p>
+              <p className="text-2xl font-medium">{profile.fullName}</p>
 
               <div className="space-y-1">
                 <div className="flex max-md:flex-col md:items-center gap-1 text-sm font-medium">
-                  <span>@{user.username}</span>
+                  <span>@{profile.username}</span>
 
                   <span className="max-md:hidden"> • </span>
 
@@ -55,8 +58,8 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
                       onClick={() => setIsSubscribersOpen(true)}
                       className="cursor-pointer"
                     >
-                      {user.subscribers?.length} subscriber
-                      {user?.subscribers!.length > 1 ? 's' : ''}
+                      {profile.followers} subscriber
+                      {profile.followers > 1 ? 's' : ''}
                     </span>
 
                     <span> • </span>
@@ -65,12 +68,12 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
                       onClick={() => setIsSubscribedToOpen(true)}
                       className="cursor-pointer"
                     >
-                      {user.subscribedTo?.length} Subscribed
+                      {profile.following} Subscribed
                     </span>
 
                     <span> • </span>
 
-                    <Link href={`/${user.username}`}>
+                    <Link href={`/${profile.username}`}>
                       {userCampaigns.length} campaign
                       {userCampaigns.length > 1 ? 's' : ''}
                     </Link>
@@ -78,9 +81,9 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
                 </div>
 
                 <div className="text-sm text-app-gray-highlight-3">
-                  {user.title}
+                  {profile.title}
                 </div>
-                <div className="text-sm">{user.location}</div>
+                <div className="text-sm">{profile.location}</div>
               </div>
             </div>
           </div>
@@ -89,6 +92,7 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
             btnType="medium"
             isSubscribe={false}
             isOwner={false}
+            profileUsername={params.username}
             className={cn('max-md:hidden', {
               hidden: isOwner,
             })}
@@ -98,26 +102,25 @@ const UserProfileNavigation = ({ user }: { user: User }) => {
             btnType="large"
             isSubscribe={false}
             isOwner={false}
+            profileUsername={params.username}
             className={cn('md:hidden', {
               hidden: isOwner,
             })}
           />
         </div>
 
-        <ProfileNavigation user={user} />
+        <ProfileNavigation profile={profile} />
       </div>
 
       <Subscribers
         isOpen={isSubscribersOpen}
-        subscribers={user.subscribers!}
-        subscribedTo={user.subscribedTo!}
+        username={params.username}
         closeSubscription={() => setIsSubscribersOpen(false)}
       />
 
       <SubscribedTo
         isOpen={isSubscribedToOpen}
-        subscribers={user.subscribedTo!}
-        subscribedTo={user.subscribers!}
+        username={params.username}
         closeSubscription={() => setIsSubscribedToOpen(false)}
       />
     </>

@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 import { UserRoundMinus, UserRoundPlus } from 'lucide-react';
+import { subscribeAction } from '@/utils/actions/subscribe/subscribeAction';
 
 /**
  *
@@ -17,16 +18,30 @@ const SubscribeBtn = ({
   isOwner,
   btnType,
   className,
+  profileUsername,
 }: {
   isSubscribe: boolean;
   isOwner: boolean;
   btnType: 'small' | 'medium' | 'large';
   className?: string;
+  profileUsername: string;
 }) => {
   const [tempIsSubscribe, tempSetIsSubscribe] = useState(isSubscribe);
 
-  const handleSubscribe = () => {
-    tempSetIsSubscribe((prev) => !prev);
+  const handleSubscribe = async () => {
+    try {
+      const response = await subscribeAction(profileUsername);
+
+      if (response.status === 'error') {
+        throw new Error(response.data.message);
+      }
+
+      console.log(response);
+
+      tempSetIsSubscribe((prev) => !prev);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   if (isOwner) {

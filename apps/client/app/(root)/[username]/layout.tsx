@@ -1,5 +1,6 @@
 import UserProfileNavigation from '@/components/navigations/UserProfileNavigation';
 import { users } from '@/constants'; //* temp data
+import { getSubscriptionsAction } from '@/utils/actions/subscribe/getSubscriptionsAction';
 import { getUserAction } from '@/utils/actions/users/getUserAction';
 import { notFound } from 'next/navigation';
 import { ReactNode } from 'react';
@@ -64,29 +65,19 @@ const UserLayout = async ({
   children,
 }: UserLayoutProps): Promise<JSX.Element> => {
   try {
-    // Fetch user data
-    let profile = await getUserAction(params.username);
+    const profile = await getUserAction(params.username);
 
-    //! This is a temporary added data: 'Down'
-    profile = profile
-      ? { ...emptyUser, ...profile }
-      : users.find((u) => u.username === params.username) || null;
-    //! This is a temporary added data: 'Up'
-
-    // If user is not found, call notFound()
     if (!profile) {
       notFound();
     }
 
-    // Render the UserProfileNavigation and children components
     return (
       <div>
-        <UserProfileNavigation user={profile} />
+        <UserProfileNavigation profile={profile!} />
         {children}
       </div>
     );
   } catch (error) {
-    console.error('Error fetching user data:', error);
     notFound();
   }
 };
