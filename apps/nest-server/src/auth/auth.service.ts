@@ -4,7 +4,7 @@ import { UsersService } from '../users/users.service';
 import { JwtService } from '@nestjs/jwt';
 import { PasswordService } from '../users/password.service';
 import { AuthDto } from './dto/auth.dto';
-import { User } from '../users/user.entity';
+import { User } from '../users/entities/user.entity';
 import { EmailService } from '../email/email.service';
 import * as process from 'node:process';
 

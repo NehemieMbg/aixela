@@ -3,7 +3,7 @@ import { AuthService } from './auth.service';
 import { UsersService } from '../users/users.service';
 import { EmailService } from '../email/email.service';
 import { CreateUserDto } from '../users/dto/create-user.dto';
-import { User } from '../users/user.entity';
+import { User } from '../users/entities/user.entity';
 import { GoogleAuthDto } from './dto/google-auth.dto';
 import { PasswordService } from '../users/password.service';
 import { JwtService } from '@nestjs/jwt';

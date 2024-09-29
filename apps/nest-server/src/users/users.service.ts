@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { Repository } from 'typeorm';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { PasswordService } from './password.service';
@@ -87,6 +87,17 @@ export class UsersService {
   async findOne(username: string): Promise<User | null> {
     return await this.userRepository.findOne({
       where: { username },
+    });
+  }
+
+  /**
+   * Finds a user by their profile name address.
+   * @param profileName - The profile name of the user to find.
+   * @returns A promise that resolves to the user object if found, or null if not found.
+   */
+  async findOneByProfileName(profileName: string): Promise<User | null> {
+    return await this.userRepository.findOne({
+      where: { profileName },
     });
   }
 
@@ -299,6 +310,7 @@ export class UsersService {
   getProfile(username: string) {
     return this.userRepository.findOne({
       where: { profileName: username },
+      relations: ['followers', 'following'],
     });
   }
 

@@ -4,7 +4,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UsersService } from './users.service';
 import { PasswordService } from './password.service';
 import { Repository } from 'typeorm';
-import { User } from './user.entity';
+import { User } from './entities/user.entity';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { GoogleAuthDto } from '../auth/dto/google-auth.dto';
 

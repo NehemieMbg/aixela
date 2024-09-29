@@ -3,10 +3,12 @@ import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import { User } from './users/user.entity';
+import { User } from './users/entities/user.entity';
 import { EmailModule } from './email/email.module';
 import { UploadsModule } from './uploads/uploads.module';
 import * as process from 'node:process';
+import { Subscriptions } from './subscriptions/subscriptions.entity';
+import { SubscriptionsModule } from './subscriptions/subscriptions.module';
 
 @Module({
   imports: [
@@ -24,10 +26,11 @@ import * as process from 'node:process';
       username: process.env.DATABASE_USERNAME,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE,
-      entities: [User],
+      entities: [User, Subscriptions],
       synchronize: true, // only in dev mode
       // logging: true, // Enable logging for debugging
     }),
+    SubscriptionsModule,
   ],
   controllers: [],
   providers: [],

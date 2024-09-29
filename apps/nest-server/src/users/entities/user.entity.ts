@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Subscriptions } from '../../subscriptions/subscriptions.entity';
 
 @Entity()
 export class User {
@@ -31,6 +32,18 @@ export class User {
 
   @Column({ nullable: true }) // for oauth
   password: string;
+
+  @OneToMany(
+    () => Subscriptions,
+    (subscribers: Subscriptions) => subscribers.follower,
+  )
+  followers: Subscriptions[];
+
+  @OneToMany(
+    () => Subscriptions,
+    (subscribers: Subscriptions) => subscribers.following,
+  )
+  following: Subscriptions[];
 
   @Column({ nullable: true })
   emailUpdateCode?: string;

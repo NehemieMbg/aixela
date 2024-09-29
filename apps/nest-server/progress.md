@@ -1,8 +1,11 @@
-**Get User Profile**
+**Subscriptions:**
 
-- [ ] Crete ProfileDto
-- [ ] Create ProfileController
-- [ ] Create ProfileService
+list of users
 
-- No need to be authenticated
-- Remove sensitives information
+User
+
+- following: list of users he follows
+- followers: list of users that follow him
+
+- just store the user id in the list of followers/following
+- when fetching the list of followers/following, fetch the user object from the user id

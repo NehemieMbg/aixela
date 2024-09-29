@@ -3,7 +3,7 @@ import { PassportStrategy } from '@nestjs/passport';
 import { Injectable } from '@nestjs/common';
 import * as process from 'node:process';
 import { UsersService } from '../../users/users.service';
-import { User } from '../../users/user.entity';
+import { User } from '../../users/entities/user.entity';
 
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
