@@ -69,8 +69,6 @@ export const getFollowingsAction = async (username: string) => {
       }
     );
 
-    console.log(response.data);
-
     return {
       status: 'success',
       data: response.data,

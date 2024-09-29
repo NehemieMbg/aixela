@@ -71,6 +71,8 @@ const UserLayout = async ({
       notFound();
     }
 
+    console.log(profile);
+
     return (
       <div>
         <UserProfileNavigation profile={profile!} />
